@@ -139,3 +139,17 @@ CREATE TABLE kfc (
 );
 GO
 
+DROP TABLE IF EXISTS timhortons;
+GO
+CREATE TABLE timhortons (
+	store_id INT IDENTITY(1,1) PRIMARY KEY,
+	country NVARCHAR(20) COLLATE Latin1_General_100_CI_AI_WS_SC_UTF8,
+	state_province NVARCHAR(50) COLLATE Latin1_General_100_CI_AI_WS_SC_UTF8,
+	city NVARCHAR(50) COLLATE Latin1_General_100_CI_AI_WS_SC_UTF8,
+	[address] NVARCHAR(110) COLLATE Latin1_General_100_CI_AI_WS_SC_UTF8,
+	postcode NVARCHAR(20),
+	latitude DECIMAL(8,6),
+	longitude DECIMAL(9,6)
+);
+GO
+

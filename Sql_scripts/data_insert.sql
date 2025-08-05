@@ -41,7 +41,7 @@ BULK INSERT ##mcdonaldsUS
 FROM 'C:\Users\Weihan\PersonalProjects\FastFoodChains\Datasets\Clean\mcdonaldsUS.txt'
 WITH
 (
-	CODEPAGE = '65001', -- Code page 65001 is the Windows code page ID for UTF-8 which are text files use
+	CODEPAGE = '65001', -- Code page 65001 is the Windows code page ID for UTF-8
 	FIRSTROW = 2,
 	FIELDTERMINATOR = '\t',
 	ROWTERMINATOR = '\n'
@@ -185,12 +185,26 @@ UPDATE wendys
 SET state_province = 'QC'
 WHERE state_province = 'PQ';
 
+
 ----- Subway Data -----------------------------------------------------------------------------------------------
 -- Have to use tab delimiter as the address sometimes has commas.
 BULK INSERT subway
 FROM 'C:\Users\Weihan\PersonalProjects\FastFoodChains\Datasets\Clean\subwayUS.txt'
 WITH
+(	
+	CODEPAGE = '65001',
+	FIRSTROW = 2,
+	FIELDTERMINATOR = '\t',
+	ROWTERMINATOR = '\n'
+);
+GO
+
+-- Insert Canadian Data
+BULK INSERT subway
+FROM 'C:\Users\Weihan\PersonalProjects\FastFoodChains\Datasets\Clean\subwayCA.txt'
+WITH
 (
+	CODEPAGE = '1252',  -- Code page for windows ANSI (western) which our txt file is using
 	FIRSTROW = 2,
 	FIELDTERMINATOR = '\t',
 	ROWTERMINATOR = '\n'
@@ -201,18 +215,6 @@ GO
 UPDATE subway
 SET [address] = SUBSTRING([address], 2, LEN([address]) - 2)
 WHERE LEFT([address], 1) = '"';
-
--- Insert Canadian Data
-BULK INSERT subway
-FROM 'C:\Users\Weihan\PersonalProjects\FastFoodChains\Datasets\Clean\subwayCA.txt'
-WITH
-(
-	CODEPAGE = '65001',
-	FIRSTROW = 2,
-	FIELDTERMINATOR = '\t',
-	ROWTERMINATOR = '\n'
-);
-GO
 
 -- Change any state_province names to their abbreviations
 WITH CTE AS (
@@ -225,12 +227,143 @@ UPDATE CTE
 SET state_province = state_province_abbr;
 GO
 
+-- Checking for duplicates
+WITH CTE AS (
+	SELECT 
+		*, 
+		ROW_NUMBER() OVER (PARTITION BY 
+			country, state_province, city, [address], postcode, latitude, longitude
+		ORDER BY latitude, longitude) AS [row]
+	FROM subway
+)
+DELETE FROM CTE WHERE [row] > 1
+GO
+
 
 ----- KFC Data -----------------------------------------------------------------------------------------------
+sp_configure 'show advanced options', 1;
+RECONFIGURE;
+GO
+sp_configure 'ad hoc distributed queries', 1;
+RECONFIGURE
+GO
+
+-- Use OPENROWSET or OPENDATASOURCE to insert from our xlsx file.
+INSERT INTO kfc 
+SELECT * 
+FROM OPENROWSET (
+	'Microsoft.ACE.OLEDB.16.0',
+	'Excel 12.0 Xml;
+	Database=C:\Users\Weihan\PersonalProjects\FastFoodChains\Datasets\Clean\kfcCA.xlsx;',
+	Sheet1$
+);
+GO
+
+INSERT INTO kfc
+SELECT *
+FROM OPENDATASOURCE (
+	'Microsoft.ACE.OLEDB.16.0',
+	'Data Source=C:\Users\Weihan\PersonalProjects\FastFoodChains\Datasets\Clean\kfcCA.xlsx;
+	Extended Properties=Excel 12.0 Xml'
+)...[Sheet1$];
+GO
+
+BULK INSERT kfc
+FROM 'C:\Users\Weihan\PersonalProjects\FastFoodChains\Datasets\Clean\kfcUS.txt'
+WITH
+(
+	CODEPAGE = '1252',
+	FIRSTROW = 2,
+	FIELDTERMINATOR = '\t',
+	ROWTERMINATOR = '\n'
+);
+GO
+
+-- Get rid of leading and trailing quotations in address column due to changing to tab delimiter
+UPDATE kfc
+SET [address] = SUBSTRING([address], 2, LEN([address]) - 2)
+WHERE LEFT([address], 1) = '"';
+
+-- Change any state_province names to their abbreviations
+WITH CTE AS (
+	SELECT k.state_province, l.state_province_abbr
+	FROM kfc k
+	JOIN lookup_abbr l 
+	ON l.state_province COLLATE Latin1_General_100_CI_AI_WS_SC_UTF8 = k.state_province
+)
+UPDATE CTE
+SET state_province = state_province_abbr;
+GO
+
+-- Remove duplicates rows
+WITH CTE AS (
+	SELECT 
+		*, 
+		ROW_NUMBER() OVER (PARTITION BY 
+			country, state_province, city, [address], postcode, latitude, longitude
+		ORDER BY latitude, longitude) AS [row]
+	FROM kfc
+)
+DELETE FROM CTE WHERE [row] > 1
 
 
+----- Tim Hortons Data -----------------------------------------------------------------------------------------------
+BULK INSERT timhortons 
+FROM 'C:\Users\Weihan\PersonalProjects\FastFoodChains\Datasets\Clean\timhortonsCA.txt'
+WITH
+(
+	CODEPAGE = '1252',  -- codepage for Windows ANSI (Western) which our txt file is using
+	FIRSTROW = 2,
+	FIELDTERMINATOR = '\t',
+	ROWTERMINATOR = '\n'
+);
+GO
+
+BULK INSERT timhortons
+FROM 'C:\Users\Weihan\PersonalProjects\FastFoodChains\Datasets\Clean\timhortonsUS.txt'
+WITH
+(
+	CODEPAGE = '65001',  
+	FIRSTROW = 2,
+	FIELDTERMINATOR = '\t',
+	ROWTERMINATOR = '\n'
+);
+GO
+
+-- Get rid of leading and trailing quotations in address column due to changing to tab delimiter
+UPDATE timhortons
+SET [address] = SUBSTRING([address], 2, LEN([address]) - 2)
+WHERE LEFT([address], 1) = '"';
+
+-- Change any state_province names to their abbreviations
+WITH CTE AS (
+	SELECT t.state_province, l.state_province_abbr
+	FROM timhortons t
+	JOIN lookup_abbr l 
+	ON l.state_province COLLATE Latin1_General_100_CI_AI_WS_SC_UTF8 = t.state_province
+)
+UPDATE CTE
+SET state_province = state_province_abbr;
+GO
+
+-- Remove duplicates rows
+WITH CTE AS (
+	SELECT 
+		*, 
+		ROW_NUMBER() OVER (PARTITION BY 
+			country, state_province, city, [address], postcode, latitude, longitude
+		ORDER BY latitude, longitude) AS [row]
+	FROM timhortons
+)
+DELETE FROM CTE WHERE [row] > 1
 
 
-SELECT * FROM subway;
+----- Domino's Pizza Data -----------------------------------------------------------------------------------------------
+
+
 SELECT * FROM mcdonalds;
 SELECT * FROM wendys;
+SELECT * FROM subway;
+SELECT * FROM kfc;
+SELECT * FROM timhortons;
+

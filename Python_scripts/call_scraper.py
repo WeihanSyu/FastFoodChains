@@ -60,7 +60,7 @@ class call_scrape:
 
 
     def call_kfc_US(self):
-        # Set web browser to use brave isntead of chrome
+        # Set web browser to use brave instead of chrome
         chrome_options.binary_location = brave_path
 
         run = scrape_construct(service, chrome_options)
@@ -84,10 +84,60 @@ class call_scrape:
             print(ex)
             df.to_excel('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\kfcUS.xlsx', index=False)
 
+
+    def call_timhortons_CA(self):
+        # Set web browser to use brave instead of chrome
+        chrome_options.binary_location = brave_path
+
+        run = scrape_construct(service, chrome_options)
+        raw_text, province, city, address, postcode = run.timhortons_CA()
+
+        df = pd.DataFrame({
+            'raw_text': raw_text,
+            'state_province': province,
+            'city': city,
+            'address': address,
+            'postcode': postcode
+        })
+
+        try:
+            existing_data = load_workbook('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\timhortonsCA.xlsx')
+            writer = pd.ExcelWriter('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\timhortonsCA.xlsx', mode='a', engine="openpyxl", if_sheet_exists='overlay')
+            startrow = writer.sheets['Sheet1'].max_row
+            df.to_excel(writer, sheet_name='Sheet1', startrow=startrow, header=None, index=False)
+            writer.close()
+        except Exception as ex:
+            print(ex)
+            df.to_excel('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\timhortonsCA.xlsx', index=False)
+
+
+    def call_timhortons_US(self):
+        # Set web browser to use brave instead of chrome
+        chrome_options.binary_location = brave_path
+
+        run = scrape_construct(service, chrome_options)
+        raw_text, state, city, address, postcode = run.timhortons_US()
+
+        df = pd.DataFrame({
+            'raw_text': raw_text,
+            'state_province': state,
+            'city': city,
+            'address': address,
+            'postcode': postcode
+        })
+
+        try:
+            existing_data = load_workbook('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\timhortonsUS.xlsx')
+            writer = pd.ExcelWriter('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\timhortonsUS.xlsx', mode='a', engine="openpyxl", if_sheet_exists='overlay')
+            startrow = writer.sheets['Sheet1'].max_row
+            df.to_excel(writer, sheet_name='Sheet1', startrow=startrow, header=None, index=False)
+            writer.close()
+        except Exception as ex:
+            print(ex)
+            df.to_excel('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\timhortonsUS.xlsx', index=False)
+
+
         
-test = call_scrape()
-test.call_kfc_US()
 
-# opening new window does not work
-
-# not opening new tab if didnt use time.sleep?
+# test = call_scrape()
+# test.call_timhortons_US()

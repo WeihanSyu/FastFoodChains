@@ -6,10 +6,7 @@ import pandas as pd
 import re
 import requests
 from requests.structures import CaseInsensitiveDict
-import openpyxl
 from openpyxl import load_workbook
-import json
-import csv
 
 
 key = open('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Python_scripts\\geoapify_key.txt').read()
@@ -227,17 +224,111 @@ class api_construct:
         except Exception as ex:
             print(ex)
 
-# This website not the most accurate. But gives us the most volume
-# Try it for Jct Hwys 2 & 41 Wakaw, SK S0K 4P0 
+    
+    def timhortonsCA_coord(self, start, stop):
+        if os.path.exists('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\timhortonsCA.xlsx'):
+            df = pd.read_excel('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\timhortonsCA.xlsx', sheet_name='full_address', header=None)
+        else:
+            print('The excel file specified does not exist in the path')
+            return
+        
+        lat, long = [], []
 
-test = api_construct(key)
+        for i in range(start, stop):
+            address = df[0][i]
+            text = re.sub(' ', '%20', address)
+            text = re.sub(',', '%2C', text)
+            text = re.sub('#', '%23', text)
+            text = re.sub('\'', '%27', text)
+            text = re.sub('-', '%2D', text)
+            text = re.sub('\.', '%2E', text)
+            text = re.sub('\(', '%28', text)
+            text = re.sub('\)', '%29', text)
+            text = re.sub('&', '%26', text)
+
+            url = "https://api.geoapify.com/v1/geocode/search?text=" + text + "&filter=countrycode:ca&limit=1&format=json&apiKey=" + self.apikey
+
+            headers = CaseInsensitiveDict()
+            headers["Accept"] = "application/json"
+
+            r = requests.get(url, headers=headers)
+
+            data = r.json()
+
+            try: 
+                lat.append(data["results"][0]["lat"])
+                long.append(data["results"][0]["lon"])
+            except IndexError:
+                lat.append(0)
+                long.append(0)
+            
+            print(i)
+
+        df_lat = pd.DataFrame({'latitude': lat})
+        df_long = pd.DataFrame({'longitude': long})
+
+        try:
+            df_lat.to_excel('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\geo_lat.xlsx', index=False)
+            df_long.to_excel('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\geo_long.xlsx', index=False)
+        except Exception as ex:
+            print(ex)
+
+    
+    def timhortonsUS_coord(self, start, stop):
+        if os.path.exists('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\timhortonsUS.xlsx'):
+            df = pd.read_excel('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\timhortonsUS.xlsx', sheet_name='full_address', header=None)
+        else:
+            print('The excel file specified does not exist in the path')
+            return
+        
+        lat, long = [], []
+
+        for i in range(start, stop):
+            address = df[0][i]
+            text = re.sub(' ', '%20', address)
+            text = re.sub(',', '%2C', text)
+            text = re.sub('#', '%23', text)
+            text = re.sub('\'', '%27', text)
+            text = re.sub('-', '%2D', text)
+            text = re.sub('\.', '%2E', text)
+            text = re.sub('\(', '%28', text)
+            text = re.sub('\)', '%29', text)
+            text = re.sub('&', '%26', text)
+
+            url = "https://api.geoapify.com/v1/geocode/search?text=" + text + "&filter=countrycode:us&limit=1&format=json&apiKey=" + self.apikey
+
+            headers = CaseInsensitiveDict()
+            headers["Accept"] = "application/json"
+
+            r = requests.get(url, headers=headers)
+
+            data = r.json()
+
+            try: 
+                lat.append(data["results"][0]["lat"])
+                long.append(data["results"][0]["lon"])
+            except IndexError:
+                lat.append(0)
+                long.append(0)
+            
+            print(i)
+
+        df_lat = pd.DataFrame({'latitude': lat})
+        df_long = pd.DataFrame({'longitude': long})
+
+        try:
+            df_lat.to_excel('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\geo_lat.xlsx', index=False)
+            df_long.to_excel('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\geo_long.xlsx', index=False)
+        except Exception as ex:
+            print(ex)
+
+
+# geoapify is not the most accurate online converter, but it gives us the most volume. 
+# For the locations that their API cannot return properly, we will give those a value of "0" for both latitude and longitude. Then manually find those.
+
 # test.subway_coord_old(839, 900)
-
 # For some reason, our excel is just not saving, but there is nothing wrong with it. In fact it HAS WORKED FOR SOME ROWS
-# Might as well just save the raw json into its own excel file and manually copy paste
+# We are going to just save the coordinates to a new Excel file instead of trying to append.
 
-# test.subway_coord(2350, 3026)
-
-# test.kfcCA_coord(0, 668)
-
-test.kfcUS_coord(900, 999)
+# test = api_construct(key)
+# test.timhortonsUS_coord(0, 665)

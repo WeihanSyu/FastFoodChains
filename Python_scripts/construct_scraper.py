@@ -87,7 +87,7 @@ class scrape_construct:
             except Exception as ex:
                 print("Exception thrown within Loop 1 - Try 1", type(ex).__name__, ex)
                 browser.quit()
-                break   # we use break for our outermost while loop just so we always get some data back
+                break   # we use break for our outermost while loop
             
             ### A province or territory may have one or multiple cities listed. Each scenario will give us a different page layout ###########
             # city index position should always be reset for each new province/territory
@@ -497,5 +497,299 @@ class scrape_construct:
 
         equal_list()
         return raw_text, state, city, address, postcode
+
+
+    def timhortons_CA(self):
+        url = "https://locations.timhortons.ca/en/"
+        browser = webdriver.Chrome(service=self.service, options=self.chrome_options)
+        browser.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})") 
+        browser.get(url)
+
+        # Close the cookie popup if exists
+        time.sleep(round(random.uniform(0.50, 1.00),2)) 
+        try:
+            cookie = browser.find_element(By.XPATH, '//div[@id="onetrust-close-btn-container"]/button')
+            cookie.click()
+            # Give the page time to process that there is no longer a cookie popup.
+            time.sleep(round(random.uniform(0.50, 1.00),2)) 
+        except:
+            pass
+        
+        window_province = browser.current_window_handle
+
+        raw_text = []
+        province = []
+        city = []
+        address = []
+        postcode = []
+        row_index = 0
+        
+        def equal_list():
+            # Since province is the first to get a value, the others can't possily have longer length. So don't bother checking if already the same.
+            if len(province) > 0 and (len(province) != len(postcode)): 
+                if len(province) != len(postcode):
+                    province.pop()
+                if len(city) != len(postcode):
+                    city.pop()
+                if len(raw_text) != len(postcode):
+                    raw_text.pop()
+                if len(raw_text) != len(postcode):
+                    address.pop()
+        
+        directory_xpath = '//ul[@class="sb-directory-list sb-directory-list-states"]'
+        list_position = 1
+        while True:
+            try:
+                province_xpath = directory_xpath + '/li[position()=' + str(list_position) + ']/a'
+                province_element = browser.find_element(By.XPATH, province_xpath)
+                province.append(province_element.get_attribute('innerText').strip())
+
+                ActionChains(browser).key_down(Keys.CONTROL).click(province_element).key_up(Keys.CONTROL).perform()
+                time.sleep(round(random.uniform(0.50, 1.00),2))
+                window_city = browser.window_handles[1]
+                browser.switch_to.window(window_city)
+                time.sleep(round(random.uniform(0.50, 1.00),2))
+                list_position += 1
+            except Exception as ex:
+                print("Exception thrown within Loop 1 - Try 1", ex)
+                browser.quit()
+                break
+
+            city_position = 1
+            while True:
+                content_position = 1
+                ### multiple cities or single city ###########################################################################################################
+                try:
+                    city_xpath = directory_xpath + '/li[position()=' + str(city_position) + ']/a'
+                    city_element = browser.find_element(By.XPATH, city_xpath)
+
+                    ActionChains(browser).key_down(Keys.CONTROL).click(city_element).key_up(Keys.CONTROL).perform()
+                    time.sleep(round(random.uniform(0.50, 1.00),2))
+                    window_store = browser.window_handles[2]
+                    browser.switch_to.window(window_store)
+                    time.sleep(round(random.uniform(0.50, 1.00),2))
+                    city_position += 1
+                
+                    ### multiple cities + multiple stores or single store ####################################################################################
+                    while True:
+                        # Some stores have numbers in place of the city name, sometimes because it really is in the middle of nowhere. 
+                        # However, the browser TITLE sometimes will give the city name, so we can use that.
+                        try:
+                            content_xpath = '//ul[@class="sb-directory-list sb-directory-list-sites"]' + '/li[position()=' + str(content_position) + ']'
+                            content_element = browser.find_element(By.XPATH, content_xpath)
+                            content_position += 1
+                            start = content_element.get_attribute('innerHTML')
+                            soup = bs(start, features='lxml')
+                            raw = soup.get_text().strip()
+   
+                            raw_text.append(re.sub("\n", "", raw))
+                            raw_text[row_index] = re.sub("Tim Hortons *-", "", raw_text[row_index]).strip()
+
+                            # Append a province value if this is NOT the first loop count
+                            if len(province) == len(postcode):
+                                province.append(province[row_index - 1])
+
+                            # Get the city
+                            title_xpath = '//h1[@class="store-directory-header"]'
+                            title_element = browser.find_element(By.XPATH, title_xpath)
+                            x = title_element.get_attribute('innerText').strip()
+                            y = re.split('CA in', x)
+                            z = re.sub(f', {province[row_index]}', '', y[1]).strip()
+
+                            # Check if the city has been replaced by that weird number pattern
+                            if re.search("[0-9]+\|[0-9]+", z):
+                                store_link_xpath = content_xpath + '/a'
+                                store_link_element = browser.find_element(By.XPATH, store_link_xpath)
+
+                                ActionChains(browser).key_down(Keys.CONTROL).click(store_link_element).key_up(Keys.CONTROL).perform()
+                                time.sleep(round(random.uniform(0.50, 1.00),2))
+                                window_store_link = browser.window_handles[3]
+                                browser.switch_to.window(window_store_link)
+                                time.sleep(round(random.uniform(0.50, 1.00),2))
+
+                                possible_city = browser.find_element(By.XPATH, '//head/title').get_attribute('innerText').strip()
+                                # Check if possible_city starts with tim hortons. If so, it has no city name
+                                if possible_city[:10] == 'Tim Horton':
+                                    city.append(z)
+                                    browser.close()
+                                    browser._switch_to.window(window_store)
+                                else:
+                                    city.append(re.split(",", possible_city)[0].strip())
+                                    browser.close()
+                                    browser._switch_to.window(window_store)
+                            else:
+                                city.append(z)
+
+                            # Get the address
+                            comma_pos = len(raw_text[row_index]) - raw_text[row_index][::-1].find(",")
+                            x = raw_text[row_index][:comma_pos-1]
+                            address.append(re.sub(city[row_index], "", x).strip())
+
+                            # Get the postal code
+                            postcode.append(raw_text[row_index][-7:])
+
+                            # We want to replace the numbered cities by their actual cities if applicable.
+                            if re.search("[0-9]+\|[0-9]+", raw_text[row_index]):
+                                raw_text[row_index] = re.sub("[0-9]+\|[0-9]+", city[row_index], raw_text[row_index])
+
+                            # Increase the row_index
+                            row_index += 1
+
+                        except NoSuchElementException as ex: # This will trigger when the loop runs out of stores
+                            browser.close()
+                            browser.switch_to.window(window_city)
+                            break
+                        except Exception as ex:
+                            print("Exception thrown within Loop 3 - Try 1", type(ex).__name__, ex)
+                            browser.quit()
+                            equal_list()
+                            return raw_text, province, city, address, postcode
+
+                except NoSuchElementException as ex: # When we run out of cities and need to break back into province selection
+                    browser.close()
+                    browser.switch_to.window(window_province)
+                    break
+                except Exception as ex:
+                    print("Exception thrown within Loop 2 - Try 1", type(ex).__name__, ex)
+                    browser.quit()
+                    equal_list()
+                    return raw_text, province, city, address, postcode
+            
+        equal_list()
+        return raw_text, province, city, address, postcode
+
+
+    def timhortons_US(self):
+        url = "https://locations.timhortons.com/en/"
+        browser = webdriver.Chrome(service=self.service, options=self.chrome_options)
+        browser.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})") 
+        browser.get(url)
+
+        # Close the cookie popup if exists
+        time.sleep(round(random.uniform(0.50, 1.00),2)) 
+        try:
+            cookie = browser.find_element(By.XPATH, '//div[@id="onetrust-close-btn-container"]/button')
+            cookie.click()
+            # Give the page time to process that there is no longer a cookie popup.
+            time.sleep(round(random.uniform(0.50, 1.00),2)) 
+        except:
+            pass
+        
+        window_state = browser.current_window_handle
+
+        raw_text = []
+        state = []
+        city = []
+        address = []
+        postcode = []
+        row_index = 0
+        
+        def equal_list():
+            # Since state is the first to get a value, the others can't possily have longer length. So don't bother checking if already the same.
+            if len(state) > 0 and (len(state) != len(postcode)): 
+                if len(state) != len(postcode):
+                    state.pop()
+                if len(city) != len(postcode):
+                    city.pop()
+                if len(raw_text) != len(postcode):
+                    raw_text.pop()
+                if len(raw_text) != len(postcode):
+                    address.pop()
+        
+        directory_xpath = '//ul[@class="sb-directory-list sb-directory-list-states"]'
+        list_position = 1
+        while True:
+            try:
+                state_xpath = directory_xpath + '/li[position()=' + str(list_position) + ']/a'
+                state_element = browser.find_element(By.XPATH, state_xpath)
+                state.append(state_element.get_attribute('innerText').strip())
+
+                ActionChains(browser).key_down(Keys.CONTROL).click(state_element).key_up(Keys.CONTROL).perform()
+                time.sleep(round(random.uniform(0.50, 1.00),2))
+                window_city = browser.window_handles[1]
+                browser.switch_to.window(window_city)
+                time.sleep(round(random.uniform(0.50, 1.00),2))
+                list_position += 1
+            except Exception as ex:
+                print("Exception thrown within Loop 1 - Try 1", ex)
+                browser.quit()
+                break
+
+            city_position = 1
+            while True:
+                content_position = 1
+                ### multiple cities or single city ###########################################################################################################
+                try:
+                    city_xpath = directory_xpath + '/li[position()=' + str(city_position) + ']/a'
+                    city_element = browser.find_element(By.XPATH, city_xpath)
+
+                    ActionChains(browser).key_down(Keys.CONTROL).click(city_element).key_up(Keys.CONTROL).perform()
+                    time.sleep(round(random.uniform(0.50, 1.00),2))
+                    window_store = browser.window_handles[2]
+                    browser.switch_to.window(window_store)
+                    time.sleep(round(random.uniform(0.50, 1.00),2))
+                    city_position += 1
+                
+                    ### multiple cities + multiple stores or single store ####################################################################################
+                    while True:
+                        # The US stores are displayed nicely. There are no numbers replacing cities as far as I can tell
+                        try:
+                            content_xpath = '//ul[@class="sb-directory-list sb-directory-list-sites"]' + '/li[position()=' + str(content_position) + ']'
+                            content_element = browser.find_element(By.XPATH, content_xpath)
+                            content_position += 1
+                            start = content_element.get_attribute('innerHTML')
+                            soup = bs(start, features='lxml')
+                            raw = soup.get_text().strip()
+   
+                            raw_text.append(re.sub("\n", "", raw))
+                            raw_text[row_index] = re.sub("Tim Hortons *-", "", raw_text[row_index]).strip()
+
+                            # Append a state value if this is NOT the first loop count
+                            if len(state) == len(postcode):
+                                state.append(state[row_index - 1])
+
+                            # Get the city
+                            title_xpath = '//h1[@class="store-directory-header"]'
+                            title_element = browser.find_element(By.XPATH, title_xpath)
+                            x = title_element.get_attribute('innerText').strip()
+                            y = re.split('Hortons in', x)
+                            city.append(re.sub(f', {state[row_index]}', '', y[1]).strip())
+
+                            # Get the address
+                            comma_pos = len(raw_text[row_index]) - raw_text[row_index][::-1].find(",")
+                            x = raw_text[row_index][:comma_pos-1]
+                            address.append(re.sub(city[row_index], "", x).strip())
+
+                            # Zipcode might not be 5 numbers. Find the position of the city. Then move by the length of the city + 2 letters for the state to get the Zipcode
+                            city_pos_last = raw_text[row_index].find(city[row_index]) + len(city[row_index])
+                            postcode.append(raw_text[row_index][city_pos_last+4:])
+
+                            # Increase the row_index
+                            row_index += 1
+
+                        except NoSuchElementException as ex: # This will trigger when the loop runs out of stores
+                            browser.close()
+                            browser.switch_to.window(window_city)
+                            break
+                        except Exception as ex:
+                            print("Exception thrown within Loop 3 - Try 1", type(ex).__name__, ex)
+                            browser.quit()
+                            equal_list()
+                            return raw_text, state, city, address, postcode
+
+                except NoSuchElementException as ex: # When we run out of cities and need to break back into state selection
+                    browser.close()
+                    browser.switch_to.window(window_state)
+                    break
+                except Exception as ex:
+                    print("Exception thrown within Loop 2 - Try 1", type(ex).__name__, ex)
+                    browser.quit()
+                    equal_list()
+                    return raw_text, state, city, address, postcode
+            
+        equal_list()
+        return raw_text, state, city, address, postcode
+    
+
 
 

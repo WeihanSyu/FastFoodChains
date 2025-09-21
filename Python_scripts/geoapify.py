@@ -16,8 +16,8 @@ class api_construct:
         self.apikey = apikey
 
     def subway_coord_old(self, start, stop):
-        if os.path.exists('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\subwayCA.xlsx'):
-            df = pd.read_excel('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\subwayCA.xlsx', sheet_name='full_address', header=None)
+        if os.path.exists('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\locations\\subwayCA.xlsx'):
+            df = pd.read_excel('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\locations\\subwayCA.xlsx', sheet_name='full_address', header=None)
         else:
             print('The excel file specified does not exist in the path')
             return
@@ -58,7 +58,7 @@ class api_construct:
         df_lat = pd.DataFrame({'latitude': lat})
         df_long = pd.DataFrame({'longitude': long})
 
-        df_main = pd.read_excel('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\subwayCA.xlsx')
+        df_main = pd.read_excel('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\locations\\subwayCA.xlsx')
 
         if pd.isna(df_main['latitude'].idxmax()):
             startrow = 1    # Plus one to account for header
@@ -69,8 +69,8 @@ class api_construct:
         startcol_long = df_main.columns.get_loc('longitude')
 
         try:
-            existing_data = load_workbook('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\subwayCA.xlsx')
-            writer = pd.ExcelWriter('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\subwayCA.xlsx', mode='a', engine="openpyxl", if_sheet_exists='overlay')
+            existing_data = load_workbook('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\locations\\subwayCA.xlsx')
+            writer = pd.ExcelWriter('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\locations\\subwayCA.xlsx', mode='a', engine="openpyxl", if_sheet_exists='overlay')
             df_lat.to_excel(writer, sheet_name='Sheet1', startcol=startcol_lat, startrow=startrow, header=None, index=False)
             df_long.to_excel(writer, sheet_name='Sheet1', startcol=startcol_long, startrow=startrow, header=None, index=False)
             writer.close()
@@ -79,8 +79,8 @@ class api_construct:
 
     
     def subway_coord(self, start, stop):
-        if os.path.exists('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\subwayCA.xlsx'):
-            df = pd.read_excel('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\subwayCA.xlsx', sheet_name='full_address', header=None)
+        if os.path.exists('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\locations\\subwayCA.xlsx'):
+            df = pd.read_excel('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\locations\\subwayCA.xlsx', sheet_name='full_address', header=None)
         else:
             print('The excel file specified does not exist in the path')
             return
@@ -98,7 +98,7 @@ class api_construct:
             text = re.sub('\(', '%28', text)
             text = re.sub('\)', '%29', text)
             text = re.sub('&', '%26', text)
-
+            print(text)
             url = "https://api.geoapify.com/v1/geocode/search?text=" + text + "&filter=countrycode:ca&limit=1&format=json&apiKey=" + self.apikey
 
             headers = CaseInsensitiveDict()
@@ -121,15 +121,15 @@ class api_construct:
         df_long = pd.DataFrame({'longitude': long})
 
         try:
-            df_lat.to_excel('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\geo_lat.xlsx', index=False)
-            df_long.to_excel('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\geo_long.xlsx', index=False)
+            df_lat.to_excel('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\locations\\geo_lat.xlsx', index=False)
+            df_long.to_excel('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\locations\\geo_long.xlsx', index=False)
         except Exception as ex:
             print(ex)
 
 
     def kfcCA_coord(self, start, stop):
-        if os.path.exists('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\kfcCA.xlsx'):
-            df = pd.read_excel('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\kfcCA.xlsx')
+        if os.path.exists('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\locations\\kfcCA.xlsx'):
+            df = pd.read_excel('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\locations\\kfcCA.xlsx')
         else:
             print('The excel file specified does not exist in the path')
             return
@@ -170,15 +170,15 @@ class api_construct:
         df_long = pd.DataFrame({'longitude': long})
 
         try:
-            df_lat.to_excel('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\geo_lat.xlsx', index=False)
-            df_long.to_excel('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\geo_long.xlsx', index=False)
+            df_lat.to_excel('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\locations\\geo_lat.xlsx', index=False)
+            df_long.to_excel('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\locations\\geo_long.xlsx', index=False)
         except Exception as ex:
             print(ex)
      
 
     def kfcUS_coord(self, start, stop):
-        if os.path.exists('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\kfcUS.xlsx'):
-            df = pd.read_excel('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\kfcUS.xlsx', sheet_name='full_address', header=None)
+        if os.path.exists('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\locations\\kfcUS.xlsx'):
+            df = pd.read_excel('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\locations\\kfcUS.xlsx', sheet_name='full_address', header=None)
         else:
             print('The excel file specified does not exist in the path')
             return
@@ -219,15 +219,15 @@ class api_construct:
         df_long = pd.DataFrame({'longitude': long})
 
         try:
-            df_lat.to_excel('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\geo_lat.xlsx', index=False)
-            df_long.to_excel('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\geo_long.xlsx', index=False)
+            df_lat.to_excel('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\locations\\geo_lat.xlsx', index=False)
+            df_long.to_excel('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\locations\\geo_long.xlsx', index=False)
         except Exception as ex:
             print(ex)
 
     
     def timhortonsCA_coord(self, start, stop):
-        if os.path.exists('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\timhortonsCA.xlsx'):
-            df = pd.read_excel('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\timhortonsCA.xlsx', sheet_name='full_address', header=None)
+        if os.path.exists('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\locations\\timhortonsCA.xlsx'):
+            df = pd.read_excel('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\locations\\timhortonsCA.xlsx', sheet_name='full_address', header=None)
         else:
             print('The excel file specified does not exist in the path')
             return
@@ -268,15 +268,15 @@ class api_construct:
         df_long = pd.DataFrame({'longitude': long})
 
         try:
-            df_lat.to_excel('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\geo_lat.xlsx', index=False)
-            df_long.to_excel('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\geo_long.xlsx', index=False)
+            df_lat.to_excel('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\locations\\geo_lat.xlsx', index=False)
+            df_long.to_excel('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\locations\\geo_long.xlsx', index=False)
         except Exception as ex:
             print(ex)
 
     
     def timhortonsUS_coord(self, start, stop):
-        if os.path.exists('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\timhortonsUS.xlsx'):
-            df = pd.read_excel('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\timhortonsUS.xlsx', sheet_name='full_address', header=None)
+        if os.path.exists('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\locations\\timhortonsUS.xlsx'):
+            df = pd.read_excel('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\locations\\timhortonsUS.xlsx', sheet_name='full_address', header=None)
         else:
             print('The excel file specified does not exist in the path')
             return
@@ -317,8 +317,8 @@ class api_construct:
         df_long = pd.DataFrame({'longitude': long})
 
         try:
-            df_lat.to_excel('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\geo_lat.xlsx', index=False)
-            df_long.to_excel('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\geo_long.xlsx', index=False)
+            df_lat.to_excel('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\locations\\geo_lat.xlsx', index=False)
+            df_long.to_excel('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\locations\\geo_long.xlsx', index=False)
         except Exception as ex:
             print(ex)
 
@@ -331,4 +331,4 @@ class api_construct:
 # We are going to just save the coordinates to a new Excel file instead of trying to append.
 
 # test = api_construct(key)
-# test.timhortonsUS_coord(0, 665)
+# test.subway_coord(831, 839)

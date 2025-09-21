@@ -32,14 +32,14 @@ class call_scrape:
         })
 
         try:
-            existing_data = load_workbook('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\subwayCA.xlsx')
-            writer = pd.ExcelWriter('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\subwayCA.xlsx', mode='a', engine="openpyxl", if_sheet_exists='overlay')
+            existing_data = load_workbook('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\locations\\subwayCA.xlsx')
+            writer = pd.ExcelWriter('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\locations\\subwayCA.xlsx', mode='a', engine="openpyxl", if_sheet_exists='overlay')
             startrow = writer.sheets['Sheet1'].max_row
             df.to_excel(writer, sheet_name='Sheet1', startrow=startrow, header=None, index=False)
             writer.close()
         except Exception as ex:
             print(ex)
-            df.to_excel('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\subwayCA.xlsx', index=False)
+            df.to_excel('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\locations\\subwayCA.xlsx', index=False)
 
 
     def call_kfc_CA(self):
@@ -49,14 +49,14 @@ class call_scrape:
         df = pd.DataFrame({'full_address': raw_text})
 
         try:
-            existing_data = load_workbook('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\kfcCA.xlsx')
-            writer = pd.ExcelWriter('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\kfcCA.xlsx', mode='a', engine="openpyxl", if_sheet_exists='overlay')
+            existing_data = load_workbook('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\locations\\kfcCA.xlsx')
+            writer = pd.ExcelWriter('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\locations\\kfcCA.xlsx', mode='a', engine="openpyxl", if_sheet_exists='overlay')
             startrow = writer.sheets['Sheet1'].max_row
             df.to_excel(writer, sheet_name='Sheet1', startrow=startrow, header=None, index=False)
             writer.close()
         except Exception as ex:
             print(ex)
-            df.to_excel('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\kfcCA.xlsx', index=False)
+            df.to_excel('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\locations\\kfcCA.xlsx', index=False)
 
 
     def call_kfc_US(self):
@@ -75,14 +75,14 @@ class call_scrape:
         })
 
         try:
-            existing_data = load_workbook('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\kfcUS.xlsx')
-            writer = pd.ExcelWriter('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\kfcUS.xlsx', mode='a', engine="openpyxl", if_sheet_exists='overlay')
+            existing_data = load_workbook('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\locations\\kfcUS.xlsx')
+            writer = pd.ExcelWriter('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\locations\\kfcUS.xlsx', mode='a', engine="openpyxl", if_sheet_exists='overlay')
             startrow = writer.sheets['Sheet1'].max_row
             df.to_excel(writer, sheet_name='Sheet1', startrow=startrow, header=None, index=False)
             writer.close()
         except Exception as ex:
             print(ex)
-            df.to_excel('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\kfcUS.xlsx', index=False)
+            df.to_excel('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\locations\\kfcUS.xlsx', index=False)
 
 
     def call_timhortons_CA(self):
@@ -101,14 +101,14 @@ class call_scrape:
         })
 
         try:
-            existing_data = load_workbook('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\timhortonsCA.xlsx')
-            writer = pd.ExcelWriter('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\timhortonsCA.xlsx', mode='a', engine="openpyxl", if_sheet_exists='overlay')
+            existing_data = load_workbook('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\locations\\timhortonsCA.xlsx')
+            writer = pd.ExcelWriter('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\locations\\timhortonsCA.xlsx', mode='a', engine="openpyxl", if_sheet_exists='overlay')
             startrow = writer.sheets['Sheet1'].max_row
             df.to_excel(writer, sheet_name='Sheet1', startrow=startrow, header=None, index=False)
             writer.close()
         except Exception as ex:
             print(ex)
-            df.to_excel('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\timhortonsCA.xlsx', index=False)
+            df.to_excel('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\locations\\timhortonsCA.xlsx', index=False)
 
 
     def call_timhortons_US(self):
@@ -127,14 +127,14 @@ class call_scrape:
         })
 
         try:
-            existing_data = load_workbook('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\timhortonsUS.xlsx')
-            writer = pd.ExcelWriter('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\timhortonsUS.xlsx', mode='a', engine="openpyxl", if_sheet_exists='overlay')
+            existing_data = load_workbook('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\locations\\timhortonsUS.xlsx')
+            writer = pd.ExcelWriter('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\locations\\timhortonsUS.xlsx', mode='a', engine="openpyxl", if_sheet_exists='overlay')
             startrow = writer.sheets['Sheet1'].max_row
             df.to_excel(writer, sheet_name='Sheet1', startrow=startrow, header=None, index=False)
             writer.close()
         except Exception as ex:
             print(ex)
-            df.to_excel('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\timhortonsUS.xlsx', index=False)
+            df.to_excel('C:\\Users\\Weihan\\PersonalProjects\\FastFoodChains\\Datasets\\Raw\\locations\\timhortonsUS.xlsx', index=False)
 
 
         

@@ -22,6 +22,8 @@ class scrape_construct:
         self.chrome_options = chrome_options
 
     
+    ### Location Scrapers ##########################################################################################################################################
+
     def subway_CA(self):
         ### Request the webpage ##############################################################################################################
         url = "https://restaurants.subway.com/canada"
@@ -790,6 +792,10 @@ class scrape_construct:
         equal_list()
         return raw_text, state, city, address, postcode
     
+
+    ### Menu Scrapers ##############################################################################################################################################
+
+
 
 
 

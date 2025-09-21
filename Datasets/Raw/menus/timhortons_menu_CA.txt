@@ -1,0 +1,390 @@
+Featured Items
+Item (Size)	Price	Calories
+Baileys Dream Hot Chocolate (Small)	CAN$ 2.99	360 Cals
+Baileys Dream Hot Chocolate (Medium)	CAN$ 3.19	450 Cals
+Baileys Dream Hot Chocolate (Large)	CAN$ 3.49	570 Cals
+Baileys Dream Hot Chocolate (Extra Large)	CAN$ 3.79	720 Cals
+Baileys Cream Coffee (Small)	CAN$ 2.49	130 Cals
+Baileys Cream Coffee (Medium)	CAN$ 2.79	210 Cals
+Baileys Cream Coffee (Large)	CAN$ 3.19	270 Cals
+Baileys Cream Coffee (Extra Large)	CAN$ 3.49	320 Cals
+Baileys Latte (Small)	CAN$ 3.99	240 Cals
+Baileys Latte (Medium)	CAN$ 4.49	310 Cals
+Baileys Latte (Large)	CAN$ 4.99	390 Cals
+Baileys Iced Capp (Small)	CAN$ 3.99	440 Cals
+Baileys Iced Capp (Medium)	CAN$ 4.49	540 Cals
+Baileys Iced Capp (Large)	CAN$ 4.99	670 Cals
+Candy Cane Hot Chocolate (Small)	CAN$ 2.99	320 Cals
+Candy Cane Hot Chocolate (Medium)	CAN$ 3.19	380 Cals
+Candy Cane Hot Chocolate (Large)	CAN$ 3.49	480 Cals
+Candy Cane Hot Chocolate (Extra Large)	CAN$ 3.79	600 Cals
+Candy Cane White Hot Chocolate (Small)	CAN$ 2.99	360 Cals
+Candy Cane White Hot Chocolate (Medium)	CAN$ 3.19	430 Cals
+Candy Cane White Hot Chocolate (Large)	CAN$ 3.49	540 Cals
+Candy Cane White Hot Chocolate (Extra Large)	CAN$ 3.79	680 Cals
+Chocolate Hazelnut Cold Brew with Nutella (Small)	CAN$ 3.49	230 Cals
+Chocolate Hazelnut Cold Brew with Nutella (Medium)	CAN$ 3.99	270 Cals
+Chocolate Hazelnut Cold Brew with Nutella (Large)	CAN$ 4.49	340 Cals
+Brewed Coffee (Small)	CAN$ 1.59	3 Cals
+Brewed Coffee (Medium)	CAN$ 1.83	4 Cals
+Brewed Coffee (Large)	CAN$ 2.07	5 Cals
+Brewed Coffee (Extra Large)	CAN$ 2.35	5 Cals
+Original Iced Coffee (Small)	CAN$ 2.19	120 Cals
+Original Iced Coffee (Medium)	CAN$ 2.49	150 Cals
+Original Iced Coffee (Large)	CAN$ 2.79	240 Cals
+Wildberry Hibiscus Sparkling Quencher (Small)	CAN$ 2.79	70 Cals
+Wildberry Hibiscus Sparkling Quencher (Medium)	CAN$ 3.29	100 Cals
+Wildberry Hibiscus Sparkling Quencher (Large)	CAN$ 3.79	130 Cals
+Caramel Brownie Filled Ring Dream Donut	CAN$ 2.49	410 Cals
+Baileys Boston Cream Dream Donut	CAN$ 2.49	300 Cals
+Hot Chocolate Muffin	CAN$ 2.49	410 Cals
+Double Chocolate Brownie	CAN$ 2.99	410 Cals
+Red Pepper & Swiss Savoury Pinwheel	CAN$ 2.99	280 Cals
+Caramelized Onion & Parmesan Savoury Pinwheel	CAN$ 2.99	290 Cals
+Spicy Rosé Chicken Flatbread Pizza	CAN$ 7.99	760 Cals
+Chicken Parmesan Flatbread Pizza	CAN$ 7.99	760 Cals
+Bacon Everything Flatbread Pizza	CAN$ 7.99	780 Cals
+Pepperoni Flatbread Pizza	CAN$ 7.99	750 Cals
+Simply Cheese Flatbread Pizza	CAN$ 6.99	630 Cals
+Dream Cookie with Nutella	CAN$ 2.29	370 Cals
+Croissant with Nutella	CAN$ 2.79	330 Cals
+Blackberry Yuzu Infusr™ Energy Beverage	CAN$ 3.59	140 Cals
+Mango Starfruit Infusr™ Energy Beverage	CAN$ 3.59	130 Cals
+Buffalo Ranch Chicken Loaded Wrap	CAN$ 8.79	610 Cals
+Buffalo Ranch Chicken Loaded Bowl	CAN$ 9.99	630 Cals
+Oreo Double Stuf Dream Cookie	CAN$ 2.29	390 Cals
+Caramilk Dream Cookie	CAN$ 2.29	340 Cals
+Breakfast
+Item	Price	Calories
+Sausage Breakfast Sandwich	CAN$ 4.49	530 Cals
+Bacon Breakfast Sandwich	CAN$ 4.49	330 Cals
+Egg & Cheese Breakfast Sandwich	CAN$ 3.99	270 Cals
+Maple Bacon Cheddar Croissant Breakfast Sandwich	CAN$ 5.79	370 Cals
+Maple Bacon Bagel BELT	CAN$ 5.79	510 Cals
+Maple Bacon Breakfast Sandwich	CAN$ 4.79	340 Cals
+Maple Bacon Farmers Breakfast Wrap	CAN$ 5.79	530 Cals
+Omelette Bites	CAN$ 3.99	Varies
+Simply Sausage Sandwich	CAN$ 2.99	450 Cals
+Steak & Egg Breakfast Sandwich	CAN$ 5.49	510 Cals
+Sausage & Bacon Breakfast Sandwich	CAN$ 5.49	580 Cals
+Farmer’s Breakfast Sandwich	CAN$ 5.49	680 Cals
+Grilled Breakfast Wrap	CAN$ 4.79	530 Cals
+Farmer’s Breakfast Wrap	CAN$ 5.49	640 Cals
+Bagel BELT	CAN$ 5.49	490 Cals
+Hashbrown	CAN$ 1.99	120 Cals
+Lunch & Dinner
+Item	Price	Calories
+Spicy Rosé Chicken Flatbread Pizza	CAN$ 7.99	760 Cals
+Simply Cheese Flatbread Pizza	CAN$ 6.99	630 Cals
+Pepperoni Flatbread Pizza	CAN$ 7.99	750 Cals
+Chicken Parmesan Flatbread Pizza	CAN$ 7.99	760 Cals
+Bacon Everything Flatbread Pizza	CAN$ 7.99	780 Cals
+Buffalo Ranch Chicken Loaded Wrap	CAN$ 8.79	610 Cals
+Buffalo Ranch Chicken Loaded Bowl	CAN$ 9.99	630 Cals
+Cilantro Lime Chicken Loaded Wrap	CAN$ 7.79	650 Cals
+Habanero Chicken Loaded Wrap	CAN$ 7.79	510 Cals
+Cilantro Lime Chicken Loaded Bowl	CAN$ 8.79	570 Cals
+Habanero Chicken Loaded Bowl	CAN$ 8.79	540 Cals
+Cilantro Lime Veggie Loaded Wrap	CAN$ 6.79	530 Cals
+Habanero Veggie Loaded Wrap	CAN$ 6.79	500 Cals
+Cilantro Lime Veggie Loaded Bowl	CAN$ 7.99	560 Cals
+Habanero Veggie Loaded Bowl	CAN$ 7.99	530 Cals
+Crispy Chicken Craveable	CAN$ 4.99	470 Cals
+Roast Beef Craveable	CAN$ 4.99	460 Cals
+Roast Beef & Cheddar Artisan Sandwich	CAN$ 6.99	560 Cals
+Turkey Bacon Club Artisan Sandwich	CAN$ 6.99	550 Cals
+BLT Artisan Sandwich	CAN$ 5.99	490 Cals
+Ham & Cheddar Artisan Sandwich	CAN$ 5.99	520 Cals
+Chicken Bacon Ranch Wrap	CAN$ 6.99	530 Cals
+Classic Chicken Wrap	CAN$ 6.49	380 Cals
+Soup (Regular)	CAN$ 4.49	140 Cals
+Soup (Large)	CAN$ 5.79	190 Cals
+Chili (Regular)	CAN$ 5.99	310 Cals
+Chili (Large)	CAN$ 6.99	430 Cals
+Sea Salt Wedges	CAN$ 2.79	380 Cals
+Condiments
+Item	Price
+Ranch Dip	CAN$ 1.50
+Chipotle Dip	CAN$ 1.50
+Cilantro Lime Dip	CAN$ 1.50
+Habanero Dip	CAN$ 1.50
+Creamy BBQ Dip	CAN$ 1.50
+Beverages
+
+Item	Price	Calories
+Baileys Dream Hot Chocolate (Small)	CAN$ 2.99	360 Cals
+Baileys Dream Hot Chocolate (Medium)	CAN$ 3.19	450 Cals
+Baileys Dream Hot Chocolate (Large)	CAN$ 3.49	570 Cals
+Baileys Dream Hot Chocolate (Extra Large)	CAN$ 3.79	720 Cals
+Baileys Cream Coffee (Small)	CAN$ 2.49	130 Cals
+Baileys Cream Coffee (Medium)	CAN$ 2.79	210 Cals
+Baileys Cream Coffee (Large)	CAN$ 3.19	270 Cals
+Hot Beverages
+Item	Price	Calories
+Baileys Dream Hot Chocolate (Small)	CAN$ 2.99	360 Cals
+Baileys Dream Hot Chocolate (Medium)	CAN$ 3.19	450 Cals
+Baileys Dream Hot Chocolate (Large)	CAN$ 3.49	570 Cals
+Baileys Dream Hot Chocolate (Extra Large)	CAN$ 3.79	720 Cals
+Baileys Cream Coffee (Small)	CAN$ 2.49	130 Cals
+Baileys Cream Coffee (Medium)	CAN$ 2.79	210 Cals
+Baileys Cream Coffee (Large)	CAN$ 3.19	270 Cals
+Baileys Cream Coffee (Extra Large)	CAN$ 3.49	320 Cals
+Baileys Latte (Small)	CAN$ 3.99	240 Cals
+Baileys Latte (Medium)	CAN$ 4.49	310 Cals
+Baileys Latte (Large)	CAN$ 4.99	390 Cals
+Candy Cane Hot Chocolate (Small)	CAN$ 2.99	320 Cals
+Candy Cane Hot Chocolate (Medium)	CAN$ 3.19	380 Cals
+Candy Cane Hot Chocolate (Large)	CAN$ 3.49	480 Cals
+Candy Cane Hot Chocolate (Extra Large)	CAN$ 3.79	600 Cals
+Candy Cane White Hot Chocolate (Small)	CAN$ 2.99	360 Cals
+Candy Cane White Hot Chocolate (Medium)	CAN$ 3.19	430 Cals
+Candy Cane White Hot Chocolate (Large)	CAN$ 3.49	540 Cals
+Candy Cane White Hot Chocolate (Extra Large)	CAN$ 3.79	680 Cals
+Chocolate Hazelnut Latte with Nutella (Small)	CAN$ 3.79	260 Cals
+Chocolate Hazelnut Latte with Nutella (Medium)	CAN$ 4.29	340 Cals
+Chocolate Hazelnut Latte with Nutella (Large)	CAN$ 4.99	420 Cals
+Pumpkin Spice Latte (Small)	CAN$ 3.79	250 Cals
+Pumpkin Spice Latte (Medium)	CAN$ 4.29	330 Cals
+Pumpkin Spice Latte (Large)	CAN$ 4.99	410 Cals
+Tropical Green Tea (Small)	CAN$ 1.79	0 Cals
+Tropical Green Tea (Medium)	CAN$ 1.99	0 Cals
+Tropical Green Tea (Large)	CAN$ 2.29	0 Cals
+Tropical Green Tea (Extra Large)	CAN$ 2.49	0 Cals
+Latte (Small)	CAN$ 2.99	90 Cals
+Latte (Medium)	CAN$ 3.49	140 Cals
+Latte (Large)	CAN$ 3.99	190 Cals
+Mocha Latte (Small)	CAN$ 3.49	140 Cals
+Mocha Latte (Medium)	CAN$ 3.99	220 Cals
+Mocha Latte (Large)	CAN$ 4.49	300 Cals
+Vanilla Latte (Small)	CAN$ 3.49	150 Cals
+Vanilla Latte (Medium)	CAN$ 3.99	230 Cals
+Vanilla Latte (Large)	CAN$ 4.49	310 Cals
+Caramel Latte (Small)	CAN$ 3.49	150 Cals
+Caramel Latte (Medium)	CAN$ 3.99	220 Cals
+Caramel Latte (Large)	CAN$ 4.49	300 Cals
+Cappuccino (Small)	CAN$ 2.99	80 Cals
+Cappuccino (Medium)	CAN$ 3.49	120 Cals
+Cappuccino (Large)	CAN$ 3.99	170 Cals
+Americano (Small)	CAN$ 2.29	3 Cals
+Americano (Medium)	CAN$ 2.79	5 Cals
+Americano (Large)	CAN$ 3.29	5 Cals
+Brewed Coffee (Small)	CAN$ 1.59	3 Cals
+Brewed Coffee (Medium)	CAN$ 1.83	4 Cals
+Brewed Coffee (Large)	CAN$ 2.07	5 Cals
+Brewed Coffee (Extra Large)	CAN$ 2.35	5 Cals
+Dark Roast Brewed Coffee (Small)	CAN$ 1.59	3 Cals
+Dark Roast Brewed Coffee (Medium)	CAN$ 1.83	4 Cals
+Dark Roast Brewed Coffee (Large)	CAN$ 2.07	5 Cals
+Dark Roast Brewed Coffee (Extra Large)	CAN$ 2.35	5 Cals
+Steeped Tea (Small)	CAN$ 1.79	0 Cals
+Steeped Tea (Medium)	CAN$ 1.99	0 Cals
+Steeped Tea (Large)	CAN$ 2.29	0 Cals
+Steeped Tea (Extra Large)	CAN$ 2.59	0 Cals
+Specialty Tea (Small)	CAN$ 1.79	0 Cals
+Specialty Tea (Medium)	CAN$ 1.99	0 Cals
+Specialty Tea (Large)	CAN$ 2.29	0 Cals
+Specialty Tea (Extra Large)	CAN$ 2.59	0 Cals
+Coffee Mocha (Small)	CAN$ 1.99	110 Cals
+Coffee Mocha (Medium)	CAN$ 2.29	140 Cals
+Coffee Mocha (Large)	CAN$ 2.49	190 Cals
+Coffee Mocha (Extra Large)	CAN$ 2.79	250 Cals
+French Vanilla (Small)	CAN$ 2.49	260 Cals
+French Vanilla (Medium)	CAN$ 2.79	330 Cals
+French Vanilla (Large)	CAN$ 2.99	430 Cals
+French Vanilla (Extra Large)	CAN$ 3.29	570 Cals
+Hot Chocolate (Small)	CAN$ 1.99	220 Cals
+Hot Chocolate (Medium)	CAN$ 2.29	280 Cals
+Hot Chocolate (Large)	CAN$ 2.49	380 Cals
+Hot Chocolate (Extra Large)	CAN$ 2.79	500 Cals
+White Hot Chocolate (Small)	CAN$ 1.99	250 Cals
+White Hot Chocolate (Medium)	CAN$ 2.29	330 Cals
+White Hot Chocolate (Large)	CAN$ 2.49	430 Cals
+White Hot Chocolate (Extra Large)	CAN$ 2.79	570 Cals
+London Fog (Small)	CAN$ 2.79	110 Cals
+London Fog (Medium)	CAN$ 3.49	160 Cals
+London Fog (Large)	CAN$ 3.99	240 Cals
+Espresso (Single)	CAN$ 1.49	3 Cals
+Espresso (Double)	CAN$ 1.99	5 Cals
+Take Twelve	CAN$ 19.99	3 Cals
+Cold Beverages
+Item	Price	Calories
+Baileys Iced Capp (Small)	CAN$ 3.99	440 Cals
+Baileys Iced Capp (Medium)	CAN$ 4.49	540 Cals
+Baileys Iced Capp (Large)	CAN$ 4.99	670 Cals
+Chocolate Hazelnut Iced Capp with Nutella (Small)	CAN$ 3.99	450 Cals
+Chocolate Hazelnut Iced Capp with Nutella (Medium)	CAN$ 4.49	550 Cals
+Chocolate Hazelnut Iced Capp with Nutella (Large)	CAN$ 4.99	670 Cals
+Chocolate Hazelnut Cold Brew with Nutella (Small)	CAN$ 3.49	230 Cals
+Chocolate Hazelnut Cold Brew with Nutella (Medium)	CAN$ 3.99	270 Cals
+Chocolate Hazelnut Cold Brew with Nutella (Large)	CAN$ 4.49	340 Cals
+Pumpkin Spice Iced Capp (Small)	CAN$ 3.99	440 Cals
+Pumpkin Spice Iced Capp (Medium)	CAN$ 4.49	530 Cals
+Pumpkin Spice Iced Capp (Large)	CAN$ 4.79	650 Cals
+Blackberry Yuzu Infusr™ Energy Beverage	CAN$ 3.59	140 Cals
+Mango Starfruit Infusr™ Energy Beverage	CAN$ 3.59	130 Cals
+Blackberry Yuzu Lemonade Quencher (Small)	CAN$ 2.79	130 Cals
+Blackberry Yuzu Lemonade Quencher (Medium)	CAN$ 3.29	190 Cals
+Blackberry Yuzu Lemonade Quencher (Large)	CAN$ 3.79	240 Cals
+Mango Frozen Lemonade (Small)	CAN$ 2.79	240 Cals
+Mango Frozen Lemonade (Medium)	CAN$ 3.29	300 Cals
+Mango Frozen Lemonade (Large)	CAN$ 3.79	400 Cals
+OREO® Double Stuf Iced Capp (Small)	CAN$ 3.99	450 Cals
+OREO® Double Stuf Iced Capp (Medium)	CAN$ 4.49	560 Cals
+OREO® Double Stuf Iced Capp (Large)	CAN$ 4.99	700 Cals
+Mango Starfruit Sparkling Quencher (Small)	CAN$ 2.79	80 Cals
+Mango Starfruit Sparkling Quencher (Medium)	CAN$ 3.29	120 Cals
+Mango Starfruit Sparkling Quencher (Large)	CAN$ 3.79	160 Cals
+Wildberry Hibiscus Sparkling Quencher (Small)	CAN$ 2.79	70 Cals
+Wildberry Hibiscus Sparkling Quencher (Medium)	CAN$ 3.29	100 Cals
+Wildberry Hibiscus Sparkling Quencher (Large)	CAN$ 3.79	130 Cals
+Fudge Brownie Iced Latte (Small)	CAN$ 3.39	150 Cals
+Fudge Brownie Iced Latte (Medium)	CAN$ 3.99	200 Cals
+Fudge Brownie Iced Latte (Large)	CAN$ 4.39	250 Cals
+Original Iced Coffee (Small)	CAN$ 2.19	120 Cals
+Original Iced Coffee (Medium)	CAN$ 2.49	150 Cals
+Original Iced Coffee (Large)	CAN$ 2.79	240 Cals
+Strawberry Frozen Lemonade (Small)	CAN$ 2.79	250 Cals
+Strawberry Frozen Lemonade (Medium)	CAN$ 3.29	310 Cals
+Strawberry Frozen Lemonade (Large)	CAN$ 3.79	410 Cals
+Frozen Lemonade (Small)	CAN$ 2.79	200 Cals
+Frozen Lemonade (Medium)	CAN$ 3.29	250 Cals
+Frozen Lemonade (Large)	CAN$ 3.79	330 Cals
+Blackberry Yuzu Sparkling Quencher (Small)	CAN$ 2.79	90 Cals
+Blackberry Yuzu Sparkling Quencher (Medium)	CAN$ 3.29	130 Cals
+Blackberry Yuzu Sparkling Quencher (Large)	CAN$ 3.79	170 Cals
+Black Iced Coffee (Small)	CAN$ 2.19	0 Cals
+Black Iced Coffee (Medium)	CAN$ 2.49	0 Cals
+Black Iced Coffee (Large)	CAN$ 2.79	0 Cals
+Roasted Hazelnut Cold Brew with Espresso Cold Foam (Small)	CAN$ 3.49	180 Cals
+Roasted Hazelnut Cold Brew with Espresso Cold Foam (Medium)	CAN$ 3.99	220 Cals
+Roasted Hazelnut Cold Brew with Espresso Cold Foam (Large)	CAN$ 4.49	300 Cals
+Strawberry Watermelon Quenchers (Small)	CAN$ 2.29	110 Cals
+Strawberry Watermelon Quenchers (Medium)	CAN$ 2.69	150 Cals
+Strawberry Watermelon Quenchers (Large)	CAN$ 3.19	190 Cals
+Peach Quenchers (Small)	CAN$ 2.29	110 Cals
+Peach Quenchers (Medium)	CAN$ 2.69	150 Cals
+Peach Quenchers (Large)	CAN$ 3.19	190 Cals
+Classic Lemonade Quenchers (Small)	CAN$ 2.19	90 Cals
+Classic Lemonade Quenchers (Medium)	CAN$ 2.49	110 Cals
+Classic Lemonade Quenchers (Large)	CAN$ 2.79	140 Cals
+Black Cold Brew (Small)	CAN$ 2.49	0 Cals
+Black Cold Brew (Medium)	CAN$ 2.99	0 Cals
+Black Cold Brew (Large)	CAN$ 3.49	0 Cals
+Original Cold Brew (Small)	CAN$ 2.49	120 Cals
+Original Cold Brew (Medium)	CAN$ 2.99	150 Cals
+Original Cold Brew (Large)	CAN$ 3.49	240 Cals
+Vanilla Cream Cold Brew (Small)	CAN$ 2.99	120 Cals
+Vanilla Cream Cold Brew (Medium)	CAN$ 3.49	160 Cals
+Vanilla Cream Cold Brew (Large)	CAN$ 3.99	240 Cals
+Original Iced Capp (Small)	CAN$ 2.99	260 Cals
+Original Iced Capp (Medium)	CAN$ 3.59	330 Cals
+Original Iced Capp (Large)	CAN$ 4.19	430 Cals
+Mocha Iced Capp (Small)	CAN$ 3.99	430 Cals
+Mocha Iced Capp (Medium)	CAN$ 4.49	530 Cals
+Mocha Iced Capp (Large)	CAN$ 4.99	650 Cals
+Vanilla Iced Capp (Small)	CAN$ 3.99	440 Cals
+Vanilla Iced Capp (Medium)	CAN$ 4.49	540 Cals
+Vanilla Iced Capp (Large)	CAN$ 4.99	660 Cals
+Unsweetened Iced Latte (Small)	CAN$ 2.99	90 Cals
+Unsweetened Iced Latte (Medium)	CAN$ 3.49	120 Cals
+Unsweetened Iced Latte (Large)	CAN$ 3.99	140 Cals
+Original Iced Latte (Small)	CAN$ 2.99	150 Cals
+Original Iced Latte (Medium)	CAN$ 3.49	200 Cals
+Original Iced Latte (Large)	CAN$ 3.99	250 Cals
+Iced Vanilla Latte (Small)	CAN$ 3.49	150 Cals
+Iced Vanilla Latte (Medium)	CAN$ 3.99	210 Cals
+Iced Vanilla Latte (Large)	CAN$ 4.49	260 Cals
+Iced Mocha Latte (Small)	CAN$ 3.49	150 Cals
+Iced Mocha Latte (Medium)	CAN$ 3.99	200 Cals
+Iced Mocha Latte (Large)	CAN$ 4.49	250 Cals
+Iced Caramel Latte (Small)	CAN$ 3.49	150 Cals
+Iced Caramel Latte (Medium)	CAN$ 3.99	200 Cals
+Iced Caramel Latte (Large)	CAN$ 4.49	250 Cals
+Chocolate Creamy Chill (Small)	CAN$ 3.99	450 Cals
+Chocolate Creamy Chill (Medium)	CAN$ 4.49	550 Cals
+Chocolate Creamy Chill (Large)	CAN$ 4.99	680 Cals
+Vanilla Creamy Chill (Small)	CAN$ 3.79	450 Cals
+Vanilla Creamy Chill (Medium)	CAN$ 4.49	560 Cals
+Vanilla Creamy Chill (Large)	CAN$ 4.79	690 Cals
+Coca-Cola® 500mL Bottle	CAN$ 2.59	200 Cals
+Diet Coke® 500mL Bottle	CAN$ 2.59	0 Cals
+Sprite® 500mL Bottle	CAN$ 2.59	200 Cals
+Canada Dry® Ginger Ale 500mL Bottle	CAN$ 2.59	190 Cals
+Apple Juice	CAN$ 2.59	130 Cals
+Orange Juice	CAN$ 2.59	140 Cals
+Spring Water	CAN$ 2.29	0 Cals
+Gold Peak® Lemon Tea 547mL Bottle	CAN$ 2.99	170 Cals
+Peach Drink	CAN$ 2.59	200 Cals
+White Milk	CAN$ 2.59	120 Cals
+Chocolate Milk	CAN$ 2.59	160 Cals
+Donuts & Timbits
+Item	Price	Calories
+Caramel Brownie Filled Ring Dream Donut	CAN$ 2.49	410 Cals
+Baileys Boston Cream Dream Donut	CAN$ 2.49	300 Cals
+Family Bundle (serves 12+)	CAN$ 38.97	8,223 Cals
+Dream Donut with Nutella	CAN$ 2.49	300 Cals
+Caramilk Filled Ring Dream Donut	CAN$ 2.49	360 Cals
+Chocolate Cruller Donut	CAN$ 1.59	360 Cals
+Apple Fritter Donut	CAN$ 1.59	330 Cals
+Boston Cream Donut	CAN$ 1.59	240 Cals
+Chocolate Dip Donut	CAN$ 1.59	220 Cals
+Honey Cruller Donut	CAN$ 1.59	320 Cals
+Honey Dip Donut	CAN$ 1.59	250 Cals
+Chocolate Glazed Donut	CAN$ 1.59	330 Cals
+Double Chocolate Donut	CAN$ 1.59	310 Cals
+Old Fashioned Plain Donut	CAN$ 1.59	280 Cals
+Sour Cream Glazed Donut	CAN$ 1.59	340 Cals
+Maple Dip Donut	CAN$ 1.59	220 Cals
+Canadian Maple Donut	CAN$ 1.59	250 Cals
+6 Assorted Donuts	CAN$ 7.79	1,860 Cals
+12 Assorted Donuts	CAN$ 13.99	3,720 Cals
+Birthday Cake Timbit	CAN$ 0.33	80 Cals
+Chocolate Glazed Timbit	CAN$ 0.33	80 Cals
+Honey Dip Timbit	CAN$ 0.33	50 Cals
+Old Fashioned Plain Timbit	CAN$ 0.33	60 Cals
+Old Fashioned Glazed Timbit	CAN$ 0.33	80 Cals
+10 Assorted Timbits	CAN$ 2.99	900 Cals
+20 Assorted Timbits	CAN$ 4.99	1,800 Cals
+50 Assorted Timbits	CAN$ 9.99	4,500 Cals
+Baked Goods
+Item	Price	Calories
+Family Bundle (serves 12+)	CAN$ 38.97	8,223 Cals
+Dream Cookie with Nutella	CAN$ 2.29	370 Cals
+Oreo Double Stuf Dream Cookie	CAN$ 2.29	390 Cals
+Caramilk Dream Cookie	CAN$ 2.29	340 Cals
+Reese’s Minis Dream Cookie with Pecans	CAN$ 2.29	380 Cals
+Dream Cookie with M&M Minis	CAN$ 2.29	360 Cals
+Chocolate Chunk Cookie	CAN$ 1.49	220 Cals
+6 Assorted Cookies	CAN$ 7.29	1,860 Cals
+12 Assorted Cookies	CAN$ 12.99	3,360 Cals
+4 Dream Cookies	CAN$ 8.99	1,520 Cals
+6 Dream Cookies	CAN$ 13.49	2,280 Cals
+Double Chocolate Brownie	CAN$ 2.99	410 Cals
+Four Cheese Twist	CAN$ 2.29	220 Cals
+Herb & Garlic Savoury Pastry	CAN$ 2.99	240 Cals
+Caramelized Onion & Parmesan Savoury Pinwheel	CAN$ 2.99	290 Cals
+Red Pepper & Swiss Savoury Pinwheel	CAN$ 2.99	280 Cals
+Hot Chocolate Muffin	CAN$ 2.49	410 Cals
+Chocolate Chip Muffin	CAN$ 2.19	420 Cals
+Fruit Explosion Muffin	CAN$ 2.49	360 Cals
+Raisin Bran Muffin	CAN$ 2.19	380 Cals
+Wild Blueberry Muffin	CAN$ 2.19	380 Cals
+Carrot Cake with Walnut Muffin	CAN$ 2.49	360 Cals
+Whole Grain Pecan Banana Bread Muffin	CAN$ 2.19	340 Cals
+6 Assorted Muffins	CAN$ 10.49	2,520 Cals
+12 Assorted Muffins	CAN$ 18.99	5,040 Cals
+Plain Croissant	CAN$ 2.29	260 Cals
+Chocolate Croissant	CAN$ 2.49	350 Cals
+Croissant with Nutella	CAN$ 2.79	330 Cals
+Raisin Tea Biscuit	CAN$ 2.19	250 Cals
+Bagels
+Item	Price	Calories
+Plain Bagel	CAN$ 2.19	290 Cals
+Everything Bagel	CAN$ 2.19	290 Cals
+12 Grain Bagel	CAN$ 2.19	320 Cals
+Four Cheese Bagel	CAN$ 2.99	330 Cals
+Sesame Seed Bagel	CAN$ 2.19	310 Cals
+Cinnamon Raisin Bagel	CAN$ 2.19	290 Cals
+Jalapeno Asiago Mozzarella Bagel	CAN$ 2.99	320 Cals
+6 Assorted Bagels	CAN$ 10.49	1,980 Cals
+PHILADELPHIA® Bulk Cream Cheese	CAN$ 3.49	640 Cals

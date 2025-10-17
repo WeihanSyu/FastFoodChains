@@ -212,7 +212,7 @@ def menu_to_excel(menu, filename):
         price = menu[1::3]
         calories = menu[2::3]
         price = [float(re.sub("US\$", "", x)) if re.search('\$[0-9]+\.[0-9]+', x) else x for x in price]     # Get rid of non-numeric characters for the price and convert to float
-        price = [round(x / 1.2, 2) if type(x) is float else x for x in price]    # Apply price reduction here to account for UberEats fees
+        price = [round(x / 1.2, 2) if type(x) is float else x for x in price]    # Apply price reduction here to account for Skip/Uber fees
         calories = [re.sub(" Cal[.]*", "", x) for x in calories]
         
         df = pd.DataFrame({
@@ -225,7 +225,7 @@ def menu_to_excel(menu, filename):
         item_name = [x for i, x in enumerate(menu) if i % 2 == 0]
         price = [x for i, x in enumerate(menu) if i % 2 != 0]   
         price = [float(re.sub("US\$", "", x)) if re.search('\$[0-9]+\.[0-9]+', x) else x for x in price]     # Get rid of the dollar sign and convert to float
-        price = [round(x / 1.2, 2) if type(x) is float else x for x in price]    # Apply price reduction here to account for Skipthedishes fee
+        price = [round(x / 1.2, 2) if type(x) is float else x for x in price]    # Apply price reduction here to account for Skip/Uber fees
         
         df = pd.DataFrame({
             'item_name': item_name,

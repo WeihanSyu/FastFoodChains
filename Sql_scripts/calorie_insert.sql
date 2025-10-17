@@ -3,8 +3,25 @@ GO
 
 
 -- Wendys calorie tables ---------------------------------------------------------------------------------------
+DROP TABLE IF EXISTS ##caloriesCA;
+GO
+CREATE TABLE ##caloriesCA (
+	restaurant NVARCHAR(50),
+	item_name NVARCHAR(100),
+	calories NVARCHAR(15)
+);
+GO
 
-INSERT INTO wendys_calories_CA
+DROP TABLE IF EXISTS ##caloriesUS;
+GO
+CREATE TABLE ##caloriesUS (
+	restaurant NVARCHAR(50),
+	item_name NVARCHAR(100),
+	calories NVARCHAR(15)
+);
+GO
+
+INSERT INTO ##caloriesCA
 SELECT * 
 FROM OPENROWSET (
 	'Microsoft.ACE.OLEDB.16.0',
@@ -15,7 +32,7 @@ FROM OPENROWSET (
 );
 GO
 
-INSERT INTO wendys_calories_US
+INSERT INTO ##caloriesUS
 SELECT * 
 FROM OPENROWSET (
 	'Microsoft.ACE.OLEDB.16.0',
@@ -27,50 +44,58 @@ FROM OPENROWSET (
 GO
 
 -- Remove all special symbols '®' and '™'
-UPDATE wendys_calories_CA
+UPDATE ##caloriesCA
 SET item_name = REPLACE(item_name, '®', '')
 WHERE item_name LIKE '%®%';
 
-UPDATE wendys_calories_CA
+UPDATE ##caloriesCA
 SET item_name = REPLACE(item_name, '™', '')
 WHERE item_name LIKE '%™%';
 
-UPDATE wendys_calories_US
+UPDATE ##caloriesUS
 SET item_name = REPLACE(item_name, '®', '')
 WHERE item_name LIKE '%®%';
 
-UPDATE wendys_calories_US
+UPDATE ##caloriesUS
 SET item_name = REPLACE(item_name, '™', '')
 WHERE item_name LIKE '%™%';
 
 -- Remove all duplicate item names
 EXEC Tools.dbo.DeleteDuplicateRecords 
 	'FastFood',
-	'wendys_calories_CA',
+	'##caloriesCA',
 	'item_name',
 	'item_name';
 GO
 
 EXEC Tools.dbo.DeleteDuplicateRecords 
 	'FastFood',
-	'wendys_calories_US',
+	'##caloriesUS',
 	'item_name',
 	'item_name';
 GO
 
 -- Remove all commas in the calories column
-UPDATE wendys_calories_CA
+UPDATE ##caloriesCA
 SET calories = REPLACE(calories, ',','')
 WHERE calories LIKE '%,%';
 
-UPDATE wendys_calories_US
+UPDATE ##caloriesUS
 SET calories = REPLACE(calories, ',','')
 WHERE calories LIKE '%,%';
 
 -- Average the calorie ranges and/or splits
-EXEC avg_calorie_rng 'wendys_calories_CA';
-EXEC avg_calorie_rng 'wendys_calories_US';
-EXEC avg_calorie_split 'wendys_calories_CA';
-EXEC avg_calorie_split 'wendys_calories_US';
+EXEC avg_calorie_rng '##caloriesCA';
+EXEC avg_calorie_rng '##caloriesUS';
+EXEC avg_calorie_split '##caloriesCA';
+EXEC avg_calorie_split '##caloriesUS';
 
+-- Insert back into main table
+INSERT INTO caloriesCA (restaurant, item_name, calories)
+SELECT restaurant, item_name, calories
+FROM ##caloriesCA;
+
+INSERT INTO caloriesUS (restaurant, item_name, calories)
+SELECT restaurant, item_name, calories
+FROM ##caloriesUS;
 

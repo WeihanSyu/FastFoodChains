@@ -2,255 +2,141 @@ USE FastFood;
 GO
 
 -- Create a lookup table for states, provinces, territories and their abbreviations -----------------------
-DROP TABLE IF EXISTS lookup_abbr;
+DROP TABLE IF EXISTS stateProvince;
 GO
-CREATE TABLE lookup_abbr (
-	state_province NVARCHAR(50),
-	state_province_abbr NCHAR(2)
+CREATE TABLE stateProvince (
+	stateProvinceID INT IDENTITY(1,1) PRIMARY KEY,
+	stateProvince_name NVARCHAR(50),
+	stateProvince_code NCHAR(2),
+	country_name NVARCHAR(50),
+	country_code NCHAR(2)
 );
 GO
 
-INSERT INTO lookup_abbr VALUES
-('Alabama', 'AL'),
-('Alaska', 'AK'),
-('Arizona', 'AZ'),
-('Arkansas', 'AR'),
-('California', 'CA'),
-('Colorado', 'CO'),
-('Connecticut', 'CT'),
-('Delaware', 'DE'),
-('Florida', 'FL'),
-('Georgia', 'GA'),
-('Hawaii', 'HI'),
-('Idaho', 'ID'),
-('Illinois', 'IL'),
-('Indiana', 'IN'),
-('Iowa', 'IA'),
-('Kansas', 'KS'),
-('Kentucky', 'KY'),
-('Louisiana', 'LA'),
-('Maine', 'ME'),
-('Maryland', 'MD'),
-('Massachusetts', 'MA'),
-('Michigan', 'MI'),
-('Minnesota', 'MN'),
-('Mississippi', 'MS'),
-('Missouri', 'MO'),
-('Montana', 'MT'),
-('Nebraska', 'NE'),
-('Nevada', 'NV'),
-('New Hampshire', 'NH'),
-('New Jersey', 'NJ'),
-('New Mexico', 'NM'),
-('New York', 'NY'),
-('North Carolina', 'NC'),
-('North Dakota', 'ND'),
-('Ohio', 'OH'),
-('Oklahoma', 'OK'),
-('Oregon', 'OR'),
-('Pennsylvania', 'PA'),
-('Rhode Island', 'RI'),
-('South Carolina', 'SC'),
-('South Dakota', 'SD'),
-('Tennessee', 'TN'),
-('Texas', 'TX'),
-('Utah', 'UT'),
-('Vermont', 'VT'),
-('Virginia', 'VA'),
-('Washington', 'WA'),
-('West Virginia', 'WV'),
-('Wisconsin', 'WI'),
-('Wyoming', 'WY'),
-('District of Columbia', 'DC'),
-('American Samoa', 'AS'),
-('Guam', 'GU'),
-('Northern Mariana Islands', 'MP'),
-('Puerto Rico', 'PR'),
-('U.S. Virgin Islands', 'VI'),
-('Ontario', 'ON'),
-('Quebec', 'QC'),
-('Nova Scotia', 'NS'),
-('New Brunswick', 'NB'),
-('Manitoba', 'MB'),
-('British Columbia', 'BC'),
-('Prince Edward Island', 'PE'),
-('Saskatchewan', 'SK'),
-('Alberta', 'AB'),
-('Newfoundland and Labrador', 'NL'),
-('Northwest Territories', 'NT'),
-('Yukon', 'YT'),
-('Nunavut', 'NU');
+INSERT INTO stateProvince (stateProvince_name, stateProvince_code, country_name, country_code) VALUES
+('Alabama', 'AL', 'United States', 'US'),
+('Alaska', 'AK', 'United States', 'US'),
+('Arizona', 'AZ', 'United States', 'US'),
+('Arkansas', 'AR', 'United States', 'US'),
+('California', 'CA', 'United States', 'US'),
+('Colorado', 'CO', 'United States', 'US'),
+('Connecticut', 'CT', 'United States', 'US'),
+('Delaware', 'DE', 'United States', 'US'),
+('Florida', 'FL', 'United States', 'US'),
+('Georgia', 'GA', 'United States', 'US'),
+('Hawaii', 'HI', 'United States', 'US'),
+('Idaho', 'ID', 'United States', 'US'),
+('Illinois', 'IL', 'United States', 'US'),
+('Indiana', 'IN', 'United States', 'US'),
+('Iowa', 'IA', 'United States', 'US'),
+('Kansas', 'KS', 'United States', 'US'),
+('Kentucky', 'KY', 'United States', 'US'),
+('Louisiana', 'LA', 'United States', 'US'),
+('Maine', 'ME', 'United States', 'US'),
+('Maryland', 'MD', 'United States', 'US'),
+('Massachusetts', 'MA', 'United States', 'US'),
+('Michigan', 'MI', 'United States', 'US'),
+('Minnesota', 'MN', 'United States', 'US'),
+('Mississippi', 'MS', 'United States', 'US'),
+('Missouri', 'MO', 'United States', 'US'),
+('Montana', 'MT', 'United States', 'US'),
+('Nebraska', 'NE', 'United States', 'US'),
+('Nevada', 'NV', 'United States', 'US'),
+('New Hampshire', 'NH', 'United States', 'US'),
+('New Jersey', 'NJ', 'United States', 'US'),
+('New Mexico', 'NM', 'United States', 'US'),
+('New York', 'NY', 'United States', 'US'),
+('North Carolina', 'NC', 'United States', 'US'),
+('North Dakota', 'ND', 'United States', 'US'),
+('Ohio', 'OH', 'United States', 'US'),
+('Oklahoma', 'OK', 'United States', 'US'),
+('Oregon', 'OR', 'United States', 'US'),
+('Pennsylvania', 'PA', 'United States', 'US'),
+('Rhode Island', 'RI', 'United States', 'US'),
+('South Carolina', 'SC', 'United States', 'US'),
+('South Dakota', 'SD', 'United States', 'US'),
+('Tennessee', 'TN', 'United States', 'US'),
+('Texas', 'TX', 'United States', 'US'),
+('Utah', 'UT', 'United States', 'US'),
+('Vermont', 'VT', 'United States', 'US'),
+('Virginia', 'VA', 'United States', 'US'),
+('Washington', 'WA', 'United States', 'US'),
+('West Virginia', 'WV', 'United States', 'US'),
+('Wisconsin', 'WI', 'United States', 'US'),
+('Wyoming', 'WY', 'United States', 'US'),
+('District of Columbia', 'DC', 'United States', 'US'),
+('American Samoa', 'AS', 'United States', 'US'),
+('Guam', 'GU', 'United States', 'US'),
+('Northern Mariana Islands', 'MP', 'United States', 'US'),
+('Puerto Rico', 'PR', 'United States', 'US'),
+('U.S. Virgin Islands', 'VI', 'United States', 'US'),
+('Ontario', 'ON', 'Canada', 'CA'),
+('Quebec', 'QC', 'Canada', 'CA'),
+('Nova Scotia', 'NS', 'Canada', 'CA'),
+('New Brunswick', 'NB', 'Canada', 'CA'),
+('Manitoba', 'MB', 'Canada', 'CA'),
+('British Columbia', 'BC', 'Canada', 'CA'),
+('Prince Edward Island', 'PE', 'Canada', 'CA'),
+('Saskatchewan', 'SK', 'Canada', 'CA'),
+('Alberta', 'AB', 'Canada', 'CA'),
+('Newfoundland and Labrador', 'NL', 'Canada', 'CA'),
+('Northwest Territories', 'NT', 'Canada', 'CA'),
+('Yukon', 'YT', 'Canada', 'CA'),
+('Nunavut', 'NU', 'Canada', 'CA');
 GO
 
 
--- Create tables for our fast food chains ------------------------------------------------------------------
-DROP TABLE IF EXISTS mcdonalds_location;
-GO 
-CREATE TABLE mcdonalds_location (
+-- Create a table for our fast food chain locations ------------------------------------------------------------------
+DROP TABLE IF EXISTS restaurant_location;
+GO
+CREATE TABLE restaurant_location (
 	store_id INT IDENTITY(1,1) PRIMARY KEY,
-	country NVARCHAR(20) COLLATE Latin1_General_100_CI_AI_WS_SC_UTF8,
-	state_province NVARCHAR(50) COLLATE Latin1_General_100_CI_AI_WS_SC_UTF8, 
-	city NVARCHAR(50) COLLATE Latin1_General_100_CI_AI_WS_SC_UTF8,
-	[address] NVARCHAR(100) COLLATE Latin1_General_100_CI_AI_WS_SC_UTF8,
+	restaurant NVARCHAR(50),
+	stateProvinceID INT FOREIGN KEY REFERENCES stateProvince(stateProvinceID),
+	city NVARCHAR(50),
+	[address] NVARCHAR(100),
 	postcode NVARCHAR(20),
 	latitude DECIMAL(8,6),
 	longitude DECIMAL(9,6)
 );
-GO
-
-DROP TABLE IF EXISTS wendys_location;
-GO
-CREATE TABLE wendys_location (
-	store_id INT IDENTITY(1,1) PRIMARY KEY,
-	country NVARCHAR(20) COLLATE Latin1_General_100_CI_AI_WS_SC_UTF8,
-	state_province NVARCHAR(50) COLLATE Latin1_General_100_CI_AI_WS_SC_UTF8,
-	city NVARCHAR(50) COLLATE Latin1_General_100_CI_AI_WS_SC_UTF8,
-	[address] NVARCHAR(100) COLLATE Latin1_General_100_CI_AI_WS_SC_UTF8,
-	postcode NVARCHAR(20),
-	latitude DECIMAL(8,6),
-	longitude DECIMAL(9,6)
-);
-GO
-
-DROP TABLE IF EXISTS subway_location;
-GO
-CREATE TABLE subway_location (
-	store_id INT IDENTITY(1,1) PRIMARY KEY,
-	country NVARCHAR(20) COLLATE Latin1_General_100_CI_AI_WS_SC_UTF8,
-	state_province NVARCHAR(50) COLLATE Latin1_General_100_CI_AI_WS_SC_UTF8,
-	city NVARCHAR(50) COLLATE Latin1_General_100_CI_AI_WS_SC_UTF8,
-	[address] NVARCHAR(100) COLLATE Latin1_General_100_CI_AI_WS_SC_UTF8,
-	postcode NVARCHAR(20),
-	latitude DECIMAL(8,6),
-	longitude DECIMAL(9,6)
-);
-GO
-
-DROP TABLE IF EXISTS kfc_location;
-GO
-CREATE TABLE kfc_location (
-	store_id INT IDENTITY(1,1) PRIMARY KEY,
-	country NVARCHAR(20) COLLATE Latin1_General_100_CI_AI_WS_SC_UTF8,
-	state_province NVARCHAR(50) COLLATE Latin1_General_100_CI_AI_WS_SC_UTF8,
-	city NVARCHAR(50) COLLATE Latin1_General_100_CI_AI_WS_SC_UTF8,
-	[address] NVARCHAR(100) COLLATE Latin1_General_100_CI_AI_WS_SC_UTF8,
-	postcode NVARCHAR(20),
-	latitude DECIMAL(8,6),
-	longitude DECIMAL(9,6)
-);
-GO
-
-DROP TABLE IF EXISTS timhortons_location;
-GO
-CREATE TABLE timhortons_location (
-	store_id INT IDENTITY(1,1) PRIMARY KEY,
-	country NVARCHAR(20) COLLATE Latin1_General_100_CI_AI_WS_SC_UTF8,
-	state_province NVARCHAR(50) COLLATE Latin1_General_100_CI_AI_WS_SC_UTF8,
-	city NVARCHAR(50) COLLATE Latin1_General_100_CI_AI_WS_SC_UTF8,
-	[address] NVARCHAR(110) COLLATE Latin1_General_100_CI_AI_WS_SC_UTF8,
-	postcode NVARCHAR(20),
-	latitude DECIMAL(8,6),
-	longitude DECIMAL(9,6)
-);
-GO
+-- COLLATE Latin1_General_100_CI_AI_WS_SC_UTF8
+-- Don't need too add this collation to our city and address columns anymore.
+-- Just make sure we use NVARCHAR during BULK INSERT
 
 
 -- Create tables for the Menu items -----------------------------------------------------------------------
-DROP TABLE IF EXISTS mcdonalds_menu_CA;
+DROP TABLE IF EXISTS menu;
 GO
-CREATE TABLE mcdonalds_menu_CA (
+CREATE TABLE menu (
+	country NVARCHAR(50),
+	restaurant NVARCHAR(50),
 	item_name NVARCHAR(100),
 	category NVARCHAR(100),
 	price DECIMAL(5, 2),
-	calories INT
-);
-GO
-
-DROP TABLE IF EXISTS mcdonalds_menu_US;
-GO
-CREATE TABLE mcdonalds_menu_US (
-	item_name NVARCHAR(100),
-	category NVARCHAR(100),
-	price DECIMAL(5, 2),
-	calories INT
-);
-GO
-
-DROP TABLE IF EXISTS wendys_menu_CA;
-GO
-CREATE TABLE wendys_menu_CA (
-	item_name NVARCHAR(100),
-	category NVARCHAR(100),
-	price DECIMAL(5, 2),
-	calories INT
-);
-GO
-
-DROP TABLE IF EXISTS wendys_menu_US;
-GO
-CREATE TABLE wendys_menu_US (
-	item_name NVARCHAR(100),
-	category NVARCHAR(100),
-	price DECIMAL(5, 2),
-	calories INT
-);
-GO
-
-DROP TABLE IF EXISTS subway_menu_CA;
-GO
-CREATE TABLE subway_menu_CA (
-	item_name NVARCHAR(100),
-	category NVARCHAR(100),
-	price DECIMAL(5, 2),
-	calories INT
-);
-GO
-
-DROP TABLE IF EXISTS subway_menu_US;
-GO
-CREATE TABLE subway_menu_US (
-	item_name NVARCHAR(100),
-	category NVARCHAR(100),
-	price DECIMAL(5, 2),
-	calories INT
-);
-GO
-
-DROP TABLE IF EXISTS kfc_menu_CA;
-GO
-CREATE TABLE kfc_menu_CA (
-	item_name NVARCHAR(100),
-	category NVARCHAR(100),
-	price DECIMAL(5, 2),
-	calories INT
-);
-GO
-
-DROP TABLE IF EXISTS kfc_menu_US;
-GO
-CREATE TABLE kfc_menu_US (
-	item_name NVARCHAR(100),
-	category NVARCHAR(100),
-	price DECIMAL(5, 2),
-	calories INT
+	calories INT,
+	CONSTRAINT PK_menu PRIMARY KEY(country, restaurant, item_name)
 );
 GO
 
 
--- Create tables for the calorie lists -----------------------------------------------------------------------
-DROP TABLE IF EXISTS wendys_calories_CA;
+-- Create separate tables for canadian and American calorie data (Official franchise site)
+DROP TABLE IF EXISTS caloriesCA;
 GO
-CREATE TABLE wendys_calories_CA (
+CREATE TABLE caloriesCA (
+	restaurant NVARCHAR(50),
 	item_name NVARCHAR(100),
-	calories VARCHAR(15)
+	calories INT,
+	CONSTRAINT PK_caloriesCA PRIMARY KEY(restaurant, item_name)
 );
 GO
 
-DROP TABLE IF EXISTS wendys_calories_US;
+DROP TABLE IF EXISTS caloriesUS;
 GO
-CREATE TABLE wendys_calories_US (
+CREATE TABLE caloriesUS (
+	restaurant NVARCHAR(50),
 	item_name NVARCHAR(100),
-	calories VARCHAR(15)
+	calories INT,
+	CONSTRAINT PK_caloriesUS PRIMARY KEY(restaurant, item_name)
 );
 GO
 

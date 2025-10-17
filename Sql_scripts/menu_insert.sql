@@ -1,9 +1,9 @@
 USE FastFood;
 GO
 
+
 --- McDonalds Menu ------------------------------------------------------------------------------------------ 
 
--- Get the Canadian Data
 DROP TABLE IF EXISTS ##mcdonalds_menu_CA;
 GO
 CREATE TABLE ##mcdonalds_menu_CA (
@@ -14,18 +14,6 @@ CREATE TABLE ##mcdonalds_menu_CA (
 );
 GO
 
-INSERT INTO ##mcdonalds_menu_CA 
-SELECT * 
-FROM OPENROWSET (
-	'Microsoft.ACE.OLEDB.16.0',
-	'Excel 12.0 Xml;
-	IMEX=1;
-	Database=C:\Users\Weihan\PersonalProjects\FastFoodChains\Datasets\Clean\menus\mcdonalds_menu_CA.xlsx;',
-	Sheet1$
-);
-GO
-
--- Get the American Data
 DROP TABLE IF EXISTS ##mcdonalds_menu_US;
 GO
 CREATE TABLE ##mcdonalds_menu_US (
@@ -36,6 +24,7 @@ CREATE TABLE ##mcdonalds_menu_US (
 );
 GO
 
+-- Get the American Data
 INSERT INTO ##mcdonalds_menu_US
 SELECT * 
 FROM OPENROWSET (
@@ -43,6 +32,21 @@ FROM OPENROWSET (
 	'Excel 12.0 Xml;
 	IMEX=1;
 	Database=C:\Users\Weihan\PersonalProjects\FastFoodChains\Datasets\Clean\menus\mcdonalds_menu_US.xlsx;',
+	Sheet1$
+);
+GO
+
+-- Convert all currencies to CAD (current exchange 1 US dollar = 1.4 CAD)
+UPDATE ##mcdonalds_menu_US SET price = CAST(CAST(price AS DECIMAL(5,2)) * 1.4 AS DECIMAL(5,2));
+
+-- Get the Canadian Data
+INSERT INTO ##mcdonalds_menu_CA
+SELECT * 
+FROM OPENROWSET (
+	'Microsoft.ACE.OLEDB.16.0',
+	'Excel 12.0 Xml;
+	IMEX=1;
+	Database=C:\Users\Weihan\PersonalProjects\FastFoodChains\Datasets\Clean\menus\mcdonalds_menu_CA.xlsx;',
 	Sheet1$
 );
 GO
@@ -90,14 +94,14 @@ UPDATE ##mcdonalds_menu_US
 SET item_name = REPLACE(item_name, '™', '')
 WHERE item_name LIKE '%™%';
 
--- Place everything back into the main tables.
-INSERT INTO mcdonalds_menu_CA (item_name, category, price, calories)
-SELECT item_name, category, price, calories
+-- Place everything back into the main table
+INSERT INTO menu (country, restaurant, item_name, category, price, calories)
+SELECT 'Canada', 'McDonalds', item_name, category, price, calories
 FROM ##mcdonalds_menu_CA;
 GO
 
-INSERT INTO mcdonalds_menu_US (item_name, category, price, calories)
-SELECT item_name, category, price , calories
+INSERT INTO menu (country, restaurant, item_name, category, price, calories)
+SELECT 'United States', 'McDonalds', item_name, category, price , calories
 FROM ##mcdonalds_menu_US;
 GO
 
@@ -145,6 +149,9 @@ FROM OPENROWSET (
 );
 GO
 
+-- Convert all currencies to CAD (current exchange 1 US dollar = 1.4 CAD)
+UPDATE ##wendys_menu_US SET price = CAST(CAST(price AS DECIMAL(5,2)) * 1.4 AS DECIMAL(5,2));
+
 -- Get rid of any duplicate items
 EXEC Tools.dbo.DeleteDuplicateRecords 
 	'FastFood',
@@ -187,12 +194,12 @@ WHERE item_name LIKE '%™%';
 -- Average any calorie range
 EXEC avg_calorie_rng '##wendys_menu_CA';
 
--- Pull in data from wendys calories tables to try and fill gaps ---------------------
+-- Pull in data from wendys calories tables to try and fill gaps ------------------------
 
 -- There is literally no calorie info for the missing canadian data
 SELECT m.item_name, m.calories, c.calories
 FROM ##wendys_menu_CA m
-JOIN wendys_calories_CA c
+JOIN caloriesCA c
 ON c.item_name = m.item_name
 WHERE m.calories LIKE '';
 
@@ -203,7 +210,7 @@ GO
 WITH CTE AS (
 	SELECT m.item_name, m.calories AS menu_cals, c.calories AS list_cals
 	FROM ##wendys_menu_US m
-	JOIN wendys_calories_US c
+	JOIN caloriesUS c
 	ON c.item_name = m.item_name
 )
 UPDATE CTE SET menu_cals = list_cals;
@@ -214,13 +221,13 @@ SET calories = NULL
 WHERE calories = '';
 
 -- Place everything back into the main tables.
-INSERT INTO wendys_menu_CA (item_name, category, price, calories)
-SELECT item_name, category, price, calories
+INSERT INTO menu (country, restaurant, item_name, category, price, calories)
+SELECT 'Canada', 'Wendys', item_name, category, price, calories
 FROM ##wendys_menu_CA;
 GO
 
-INSERT INTO wendys_menu_US (item_name, category, price, calories)
-SELECT item_name, category, price, calories
+INSERT INTO menu (country, restaurant, item_name, category, price, calories)
+SELECT 'United States', 'Wendys', item_name, category, price, calories
 FROM ##wendys_menu_US;
 GO
 
@@ -266,20 +273,12 @@ UPDATE ##subway_menu_CA
 SET item_name = REPLACE(item_name, '™', '')
 WHERE item_name LIKE '%™%';
 
-INSERT INTO subway_menu_CA (item_name, category, price, calories)
-SELECT item_name, category, price, calories
+INSERT INTO menu (country, restaurant, item_name, category, price, calories)
+SELECT 'Canada', 'Subway', item_name, category, price, calories
 FROM ##subway_menu_CA;
 
 
 --- KFC Menu ------------------------------------------------------------------------------------------ 
 
 
-SELECT * FROM mcdonalds_menu_CA;
-SELECT * FROM mcdonalds_menu_US;
-SELECT * FROM wendys_menu_CA;
-SELECT * FROM wendys_menu_US;
-SELECT * FROM subway_menu_CA
-
-SELECT * FROM subway_menu_US;
-
-SELECT * FROM kfc_menu_CA;
+SELECT * FROM menu

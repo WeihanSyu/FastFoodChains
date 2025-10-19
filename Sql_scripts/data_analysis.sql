@@ -37,15 +37,50 @@ WHERE s.country_code = 'CA' AND s.stateProvince_code = 'BC'
 GROUP BY restaurant
 ORDER BY COUNT(*) DESC;
 
-/* 2. Which restaurant leads the pack according to Calories/Dollar for categories "main" and "sides"
-and by what percentage is it ahead of the runner-up? */
+/* 2. Display the top 5 cities by total number of restaurant locations present.
+Include their respective state, province or territory, the amount of locations. */
+SELECT TOP(5) city, stateProvince_name, COUNT(*) AS total_locations
+FROM restaurant_location r
+JOIN stateProvince s ON s.stateProvinceID = r.stateProvinceID
+GROUP BY city, stateProvince_name
+ORDER BY COUNT(*) DESC;
 
-SELECT restaurant, category, 
-	AVG([calories/dollar]) AS avg_item_calories,
-	DENSE_RANK() OVER (PARTITION BY category ORDER BY AVG([calories/dollar]) DESC) AS rnk
-FROM menu_cals_per_buck_CA
-WHERE category = 'main' OR category = 'sides'
-GROUP BY restaurant, category;
+/* 3. For the top 5 cities from the above result, find their most popular (by amount of stores) restaurant
+and its location count. */
+WITH CTE_1 AS (		-- Notice how we can't use TOP(5) here because ORDER clause is not allowed for a CTE so we require RANK()
+	SELECT city, s.stateProvinceID, COUNT(*) AS total_locations,
+		RANK() OVER (ORDER BY COUNT(*) DESC) rnk
+	FROM restaurant_location r
+	JOIN stateProvince s ON s.stateProvinceID = r.stateProvinceID
+	GROUP BY city, s.stateProvinceID 
+),
+CTE_2 AS (
+	SELECT city, restaurant, COUNT(*) AS top_locations,
+		RANK() OVER (PARTITION BY city ORDER BY COUNT(*) DESC, restaurant) rnk
+	FROM restaurant_location 
+	GROUP BY city, restaurant
+
+)
+SELECT c1.city, stateProvince_name, total_locations, restaurant AS top_restaurant, top_locations
+FROM CTE_1 c1 JOIN CTE_2 c2
+ON c1.city = c2.city
+JOIN stateProvince s
+ON s.stateProvinceID = c1.stateProvinceID
+WHERE c1.rnk <= 5 AND c2.rnk = 1
+ORDER BY total_locations DESC;
+
+/* 4. Which restaurant leads the pack according to Calories/Dollar for categories "main" and "sides"
+and by what percentage is it ahead of the runner-up? */
+WITH CTE AS (
+	SELECT restaurant, category, 
+		AVG([calories/dollar]) AS avg_calories_dollar,
+		DENSE_RANK() OVER (PARTITION BY category ORDER BY AVG([calories/dollar]) DESC) AS rnk
+	FROM menu_cals_per_buck_CA
+	WHERE category = 'main' OR category = 'sides'
+	GROUP BY restaurant, category
+)
+SELECT restaurant, category, avg_calories_dollar
+FROM CTE WHERE rnk = 1;
 
 -- Percentage ahead
 WITH CTE AS (
@@ -67,15 +102,15 @@ SELECT restaurant, category, percent_diff_from_runner_up
 FROM CTE_2
 WHERE rnk = 1;
 
--- 3. Which restaurant has the worst bang for buck from the main line item selection?
-SELECT TOP(1) restaurant, category, 
+-- 5. Which restaurant has the worst bang for buck from the main line item selection?
+SELECT TOP(1) restaurant,
 	AVG([calories/dollar]) AS [avg_item_cals/dollar]
 FROM menu_cals_per_buck_CA
 WHERE category = 'main'
 GROUP BY restaurant, category
 ORDER BY [avg_item_cals/dollar] ASC;
 
--- 4. Are combos and meals actually worth it?
+-- 6. Are combos and meals actually worth it?
 SELECT item_name, [calories/dollar] 
 FROM menu_cals_per_buck_CA
 WHERE restaurant = 'McDonalds' 
@@ -86,7 +121,7 @@ ORDER BY item_name;
 This means that, either the drinks that come with the meal are horrible calories/dollar wise, or
 the sides, or both. */
 
--- 5. What is the most cost effective menu to be ordering from?
+-- 7. What is the most cost effective menu to be ordering from?
 WITH CTE AS (
 	SELECT restaurant, category, 
 		AVG([calories/dollar]) AS avg_item_calories,
@@ -98,7 +133,7 @@ SELECT * FROM CTE
 WHERE rnk = 1;
 -- Baked Goods is the unanimous king of value. Not surprising. Full of fats.
 
--- 6. Now get the percentage of how many restaurants have the the same top 1 category
+-- 8. Now get the percentage of how many restaurants have the the same top 1 category
 WITH CTE AS (
 	SELECT restaurant, category, 
 		AVG([calories/dollar]) AS avg_item_calories,
@@ -114,13 +149,13 @@ WHERE rnk = 1
 GROUP BY category
 ORDER BY COUNT(*) DESC;
 
--- 7. Should I be going for breakfast or just wait for lunch? 
+-- 9. Should I be going for breakfast or just wait for lunch? 
 SELECT restaurant, category, AVG([calories/dollar]) AS avg_item_calories
 FROM menu_cals_per_buck_CA
 WHERE category = 'breakfast' OR category = 'main'
 GROUP BY restaurant, category;
 
--- 8. Get the average calories/dollar for an item of all fast food chains
+-- 10. Get the average calories/dollar for an item of all fast food chains
 SELECT AVG(CAST([calories/dollar] AS FLOAT))
 FROM menu_cals_per_buck_CA;
 

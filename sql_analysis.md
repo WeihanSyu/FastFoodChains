@@ -29,7 +29,64 @@ restaurant|num_locations|
 ----------|-------------|
 Subway    |          421|
 
-**2.** Which restaurant has the best calories/dollar ratio for categories "main" and "sides"?
+**2.** What are the top 5 cities by total number of restaurant locations present? Include their respective state, province or territory, and the amount of locations.
+
+```sql
+SELECT TOP(5) city, stateProvince_name AS state_province, COUNT(*) AS total_locations
+FROM restaurant_location r
+JOIN stateProvince s ON s.stateProvinceID = r.stateProvinceID
+GROUP BY city, stateProvince_name
+ORDER BY COUNT(*) DESC;
+```
+
+**Results:**
+
+city|state_province|total_locations|
+----|--------------|---------------|
+Toronto|Ontario|437|
+Houston|Texas|422|
+Chicago|Illinois|365|
+Calgary|Alberta|349|
+Edmonton|Alberta|293|
+
+**3.** For the top 5 cities from the above result, find their most popular (by amount of stores) restaurant
+and its location count.
+
+```sql
+WITH CTE_1 AS (	
+	SELECT city, s.stateProvinceID, COUNT(*) AS total_locations,
+		RANK() OVER (ORDER BY COUNT(*) DESC) rnk
+	FROM restaurant_location r
+	JOIN stateProvince s ON s.stateProvinceID = r.stateProvinceID
+	GROUP BY city, s.stateProvinceID 
+),
+CTE_2 AS (
+	SELECT city, restaurant, COUNT(*) AS top_locations,
+		RANK() OVER (PARTITION BY city ORDER BY COUNT(*) DESC, restaurant) rnk
+	FROM restaurant_location 
+	GROUP BY city, restaurant
+
+)
+SELECT c1.city, stateProvince_name AS state_province, total_locations, restaurant AS top_restaurant, top_locations
+FROM CTE_1 c1 JOIN CTE_2 c2
+ON c1.city = c2.city
+JOIN stateProvince s
+ON s.stateProvinceID = c1.stateProvinceID
+WHERE c1.rnk <= 5 AND c2.rnk = 1
+ORDER BY total_locations DESC;
+```
+
+**Results:**
+
+city|state_province|total_locations|top_restaurant|top_locations|
+----|--------------|---------------|--------------|-------------|
+Toronto|Ontario|437|Subway|185|
+Houston|Texas|422|Subway|219|
+Chicago|Illinois|365|Subway|215|
+Calgary|Alberta|349|Subway|126|
+Edmonton|Alberta|293|Tim Hortons|107|
+
+**4.** Which restaurant has the best calories/dollar ratio for categories "main" and "sides"?
 
 ```sql
 WITH CTE AS (
@@ -51,7 +108,7 @@ restaurant|category|avg_calories_dollar
 Wendys    |    main|                93|
 Wendys    |   sides|               115|
 
-**3.** Building upon question 2, by what percentage is the restaurant ahead of the runner-up in calories/dollar?
+**5.** Building upon question 2, by what percentage is the restaurant ahead of the runner-up in calories/dollar?
 
 ```sql
 WITH CTE AS (
@@ -81,7 +138,7 @@ restaurant|category|percent_diff_from_runner_up
 Wendys    |    main|                     25.68|
 Wendys    |   sides|                     26.37|
 
-**4.** Which restaurant has the worst bang for buck from the main line item selection?
+**6.** Which restaurant has the worst bang for buck from the main line item selection?
 
 ```sql
 SELECT TOP(1) restaurant,
@@ -98,7 +155,7 @@ restaurant|avg_item_cals/dollar|
 ----------|--------------------|
 Subway    |                  60|
 
-**5.** What is the most cost effective menu to be ordering from?
+**7.** What is the most cost effective menu to be ordering from?
 
 ``` sql
 WITH CTE AS (
@@ -120,7 +177,7 @@ McDonalds|baked goods|149|1|
 Subway|baked goods|240|1|
 Wendys|baked goods|125|1|
 
-**6.** Should I be going for breakfast, or just wait for lunch?
+**8.** Should I be going for breakfast, or just wait for lunch?
 
 ```sql
 SELECT restaurant, category, AVG([calories/dollar]) AS avg_item_calories
@@ -140,7 +197,7 @@ McDonalds|main|74
 Subway|main|60|
 Wendys|main|93|
 
-**7.** Are combos and meals actually worth it?
+**9.** Are combos and meals actually worth it?
 
 ```sql
 SELECT item_name, [calories/dollar] 
@@ -170,5 +227,6 @@ McChicken |78|
 McChicken Extra Value Meal |79|
 Quarter Pounder BLT |68|
 Quarter Pounder BLT Extra Value Meal |67|
+
 
 
